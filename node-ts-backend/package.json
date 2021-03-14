@@ -11,8 +11,8 @@
     "start:prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
     "build": "tsc -p tsconfig.prod.json",
     "test": "jest",
-		"test:watch": "jest --watch",
-		"test:coverage": "jest --coverage"
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.1",
