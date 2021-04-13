@@ -30,10 +30,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': 'off',
     'import/extensions': 'off',
-    'import/no-extraneous-dependencies': [
-      'error',
-      { devDependencies: ['**/*.test.tsx', '**/*.spec.tsx', '**/*.test.ts', '**/*.spec.ts'] },
-    ],
     'import/no-unresolved': 'error',
     'import/order': [
       'error',
@@ -53,6 +49,10 @@ module.exports = {
           caseInsensitive: true,
         },
       },
+    ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['jest.setup.ts', '**/*.test.tsx', '**/*.spec.tsx', '**/*.test.ts', '**/*.spec.ts'] },
     ],
   },
   settings: {

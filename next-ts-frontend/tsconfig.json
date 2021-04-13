@@ -22,12 +22,10 @@
     "declaration": true, // Generate corresponding .d.ts file
     "noUnusedLocals": true, // Report errors on unused locals
     "noUnusedParameters": true, // Report errors on unused parameters
-    "incremental": true, // Enable incremental compilation by reading/writing information from prior compilations to a file on disk
     "noFallthroughCasesInSwitch": true, // Report errors for fallthrough cases in switch statement
-    "outDir": "dist",
     "rootDir": ".",
     "baseUrl": ".",
-    "paths": {
+    "paths": { //alias pathing for absolute paths
       "@src/*": ["src/*"],
       "@pages/*": ["pages/*"],
       "@styles/*": ["styles/*"]
@@ -38,5 +36,5 @@
   "include": [
     "next-env.d.ts", "pages/**/*", "src/**/*", "styles/**/*" // *** The files TypeScript should type check ***
   ],
-  "exclude": ["node_modules", "dist", "coverage"] // *** The files to not type check ***
+  "exclude": ["node_modules", "coverage"] // *** The files to not type check ***
 }

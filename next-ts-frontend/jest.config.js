@@ -8,7 +8,7 @@ module.exports = {
     '@styles/(.*)': '<rootDir>/styles/$1',
   },
   coverageDirectory: 'coverage',
-  collectCoverageFrom: ['**/*.{js,jsx,ts,tsx}'],
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', 'pages/**/*.{js,jsx,ts,tsx}'],
   coverageThreshold: {
     global: {
       branches: 0,
