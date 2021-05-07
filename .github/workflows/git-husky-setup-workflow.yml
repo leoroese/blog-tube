@@ -3,7 +3,7 @@ on:
   push:
     paths:
       - "./git-husky-setup/**"
-      - ".github/workflows/git-husky-setup.yml"
+      - ".github/workflows/git-husky-setup-workflow.yml"
     push:
       branches: [ main ]
     pull_request:
