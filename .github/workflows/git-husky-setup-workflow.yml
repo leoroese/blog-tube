@@ -4,8 +4,10 @@ on:
     paths:
       - "./git-husky-setup/**"
       - ".github/workflows/git-husky-setup.yml"
-    branches:
-      - main
+    push:
+      branches: [ main ]
+    pull_request:
+      branches: [ main ]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
