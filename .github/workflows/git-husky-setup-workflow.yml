@@ -1,5 +1,11 @@
-name: GitHub Actions Demo
-on: [push]
+name: git-husky-setup
+on: 
+  push:
+    paths:
+      - "./git-husky-setup/**"
+      - ".github/workflows/git-husky-setup.yml"
+    branches:
+      - main
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
