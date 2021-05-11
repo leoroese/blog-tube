@@ -1,9 +1,9 @@
-name: test-workflow
+name: git-husky-setup-workflow
 on: 
   push:
     paths:
-      - "./test-workflow/**"
-      - ".github/workflows/test-workflow.yml"
+      - "./git-husky-setup/**"
+      - ".github/workflows/git-husky-setup-workflow.yml"
     push:
       branches: [ main ]
     pull_request:
