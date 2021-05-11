@@ -8,11 +8,13 @@ on:
       branches: [ main ]
     pull_request:
       branches: [ main ]
+defaults:
+  run:
+    shell: bash
+    working-directory: git-husky-setup
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./git-husky-setup
     
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
