@@ -1,0 +1,35 @@
+name: "{{SERVICE}}"
+
+on:
+  push:
+    paths:
+      - "./{{SERVICE}}/**"
+      - ".github/workflows/{{SERVICE}}.yml"
+    push:
+      branches: [ main ]
+    pull_request:
+      branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up node 
+        uses: actions/setup-node@v1
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+
+    # Example of how to add deployment to heroku as a step
+    # steps:
+    #   - uses: actions/checkout@v2
+    #   - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+    #     with:
+    #       heroku_api_key: ${{secrets.HEROKU_API_KEY}} // can add this to github secrets
+    #       heroku_app_name: "[app name]" #Must be unique in Heroku
+    #       heroku_email: "[email]"
+    #       usedocker: true
+    #       appdir: "backend/{{SERVICE}}"
