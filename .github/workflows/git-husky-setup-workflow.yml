@@ -2,7 +2,7 @@ name: git-husky-setup-workflow
 on: 
   push:
     paths:
-      - "./git-husky-setup/**"
+      - "git-husky-setup/**"
       - ".github/workflows/git-husky-setup-workflow.yml"
     push:
       branches: [ main ]
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - run: cd git-husky-setup
       - uses: actions/checkout@v2
       - name: Set up node 
         uses: actions/setup-node@v1
