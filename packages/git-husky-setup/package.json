@@ -1,5 +1,5 @@
 {
-  "name": "node-ts-backend",
+  "name": "git-husky-setup",
   "version": "1.0.0",
   "description": "Node.js and typescript backend setup project for blog-tube",
   "main": "index.js",
@@ -13,9 +13,9 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prepare": "cd .. && husky install git-husky-setup/.husky",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "precommit":"yarn lint-staged && yarn test"
   },
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.1",
@@ -23,8 +23,6 @@
     "@types/node": "^14.14.33",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
-    "commitizen": "^4.2.3",
-    "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.21.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^8.1.0",
@@ -43,10 +41,5 @@
   },
   "dependencies": {
     "dotenv-safe": "^8.2.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./git-husky-setup/node_modules/cz-conventional-changelog"
-    }
   }
 }
