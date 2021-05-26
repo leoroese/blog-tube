@@ -1,0 +1,10 @@
+{
+  "name": "aws-serverless-node",
+  "version": "1.0.0",
+  "description": "AWS Serverless Project",
+  "main": "index.js",
+  "repository": "https://github.com/leoroese/blog-tube",
+  "author": "Leonardo Roese",
+  "license": "MIT",
+  "private": false
+}
