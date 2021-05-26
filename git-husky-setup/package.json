@@ -15,7 +15,8 @@
     "test:coverage": "jest --coverage",
     "prepare": "cd .. && husky install git-husky-setup/.husky",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "pre-commit":"yarn lint-staged && yarn test"
   },
   "devDependencies": {
     "@types/dotenv-safe": "^8.1.1",
