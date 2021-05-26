@@ -1,4 +1,5 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+cd .
 lerna run --concurrency 1 --stream precommit --since HEAD --exclude-dependents

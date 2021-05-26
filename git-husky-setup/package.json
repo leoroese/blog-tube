@@ -13,7 +13,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prepare": "cd .. && husky install git-husky-setup/.husky",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "pre-commit":"yarn lint-staged && yarn test"

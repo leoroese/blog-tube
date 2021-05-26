@@ -1,6 +1,10 @@
 {
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "husky": "^6.0.0"
   },
-  "name": "blog-tube"
+  "name": "blog-tube",
+  "scripts": {
+    "prepare": "husky install"
+  }
 }
