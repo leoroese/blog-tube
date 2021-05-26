@@ -2,7 +2,7 @@ name: git-husky-setup-workflow
 on: 
   push:
     paths:
-      - "git-husky-setup/**"
+      - "packages/git-husky-setup/**"
       - ".github/workflows/git-husky-setup-workflow.yml"
     push:
       branches: [ main ]
@@ -11,7 +11,7 @@ on:
 defaults:
   run:
     shell: bash
-    working-directory: git-husky-setup
+    working-directory: packages/git-husky-setup
 jobs:
   test:
     runs-on: ubuntu-latest

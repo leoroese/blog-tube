@@ -3,7 +3,7 @@ name: "{{SERVICE}}"
 on:
   push:
     paths:
-      - "{{SERVICE}}/**"
+      - "packages/{{SERVICE}}/**"
       - ".github/workflows/{{SERVICE}}.yml"
     push:
       branches: [ main ]
