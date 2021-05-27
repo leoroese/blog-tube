@@ -19,10 +19,25 @@ functions:
       - http: 
           path: serverlessSetup/goodbye
           method: post
+  question:
+    handler: src/functions/question.handler
+    dependsOn: SNSHelloEvent
+    events:
+      - sns:
+          arn: !Ref SNSHelloEvent
+          topicName: hello-event-${opt:stage}
 
 # Serverless plugins
 plugins:
   - serverless-plugin-typescript
+  - serverless-offline
 
 # Resources your functions use
 resources:
+  Resources:
+    # SNS Topics
+    SNSHelloEvent:
+      Type: AWS::SNS::Topic
+      Properties:
+        DisplayName: Hello Event Topic
+        TopicName: hello-event-${opt:stage}

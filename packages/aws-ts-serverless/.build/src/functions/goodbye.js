@@ -10,14 +10,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
-const lodash_1 = require("lodash");
 const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
-    const requestBody = lodash_1.get(event, 'body');
-    const parsedBody = JSON.parse(requestBody);
-    const response = {
-        statusCode: 200,
-        body: `Goodbye ${parsedBody === null || parsedBody === void 0 ? void 0 : parsedBody.name}`,
-    };
-    return response;
+    try {
+        const parsedBody = JSON.parse(event.body || '');
+        return {
+            statusCode: 200,
+            body: `Goodbye ${parsedBody === null || parsedBody === void 0 ? void 0 : parsedBody.name}`,
+        };
+    }
+    catch (err) {
+        return {
+            statusCode: 500,
+            body: 'An error occured',
+        };
+    }
 });
 exports.handler = handler;

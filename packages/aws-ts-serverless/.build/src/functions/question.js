@@ -10,19 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
-const handler = (_event) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const response = {
-            statusCode: 200,
-            body: 'HELLO YOU ARE MY FRIEND!!!',
-        };
-        return response;
-    }
-    catch (err) {
-        return {
-            statusCode: 500,
-            body: 'An error occured',
-        };
-    }
+const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
+    const records = event.Records;
+    records.forEach(record => {
+        console.log('Message is: ', record.Sns.Message);
+    });
 });
 exports.handler = handler;

@@ -1,13 +1,16 @@
-interface ILambdaResponse {
-  statusCode: number;
-  body: string;
-}
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
-// Record<string, never> means empty object since get request
-export const handler = async (_event: Record<string, never>): Promise<ILambdaResponse> => {
-  const response: ILambdaResponse = {
-    statusCode: 200,
-    body: 'HELLO YOU ARE MY FRIEND!!!',
-  };
-  return response;
+export const handler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  try {
+    const response = {
+      statusCode: 200,
+      body: 'HELLO YOU ARE MY FRIEND!!!',
+    };
+    return response;
+  } catch (err) {
+    return {
+      statusCode: 500,
+      body: 'An error occured',
+    };
+  }
 };
