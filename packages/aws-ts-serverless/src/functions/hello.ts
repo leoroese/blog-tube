@@ -2,7 +2,6 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 
 export const handler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   try {
-    const x = 10;
     const response = {
       statusCode: 200,
       body: 'HELLO YOU ARE MY FRIEND!!!',
