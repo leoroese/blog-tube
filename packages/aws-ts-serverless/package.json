@@ -7,7 +7,7 @@
   "author": "Leonardo Roese",
   "license": "MIT",
   "scripts": {
-    "dev": "sls offline",
+    "dev": "sls offline -s dev",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "aws-lambda": "^1.0.6",
+    "cross-env": "^7.0.3",
     "dotenv-safe": "^8.2.0"
   }
 }

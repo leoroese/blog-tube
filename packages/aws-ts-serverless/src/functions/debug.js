@@ -1,6 +1,4 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-
-export const handler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+const handler = () => {
   try {
     const x = 10;
     const response = {
@@ -14,4 +12,8 @@ export const handler = async (_event: APIGatewayProxyEvent): Promise<APIGatewayP
       body: 'An error occured',
     };
   }
+};
+
+module.exports = {
+  handler,
 };

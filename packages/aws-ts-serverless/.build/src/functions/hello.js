@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
 const handler = (_event) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const x = 10;
         const response = {
             statusCode: 200,
             body: 'HELLO YOU ARE MY FRIEND!!!',
@@ -26,3 +27,4 @@ const handler = (_event) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.handler = handler;
+//# sourceMappingURL=hello.js.map

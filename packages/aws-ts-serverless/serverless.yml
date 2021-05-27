@@ -25,7 +25,7 @@ functions:
     events:
       - sns:
           arn: !Ref SNSHelloEvent
-          topicName: hello-event-${opt:stage}
+          topicName: hello-event
 
 # Serverless plugins
 plugins:
@@ -40,4 +40,4 @@ resources:
       Type: AWS::SNS::Topic
       Properties:
         DisplayName: Hello Event Topic
-        TopicName: hello-event-${opt:stage}
+        TopicName: hello-event
