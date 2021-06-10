@@ -1,0 +1,31 @@
+type Query {
+  books: [Book]
+}
+
+"""A book"""
+type Book {
+  """id of the book"""
+  id: ID!
+
+  """title of book"""
+  title: String
+
+  """author of book"""
+  author: String
+}
+
+type Mutation {
+  createBook(
+    """Book input to be created"""
+    input: CreateBookInput!
+  ): Book
+}
+
+"""Create book input"""
+input CreateBookInput {
+  """An arbitrary integer."""
+  title: String!
+
+  """An arbitrary integer."""
+  author: String!
+}
