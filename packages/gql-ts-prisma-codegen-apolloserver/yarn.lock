@@ -913,7 +913,19 @@
     "@graphql-tools/utils" "^7.9.1"
     tslib "~2.2.0"
 
-"@graphql-codegen/typescript@^1.22.1":
+"@graphql-codegen/typescript-resolvers@1.19.2":
+  version "1.19.2"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-resolvers/-/typescript-resolvers-1.19.2.tgz#07d97961276ef32fcd7ce10e65c09a6d91198954"
+  integrity sha512-7RKXcIK6vuqSlDIoOG7VJMvmlnPU9ELRSbqUivXNXD70K493vv4bAcGFhP1qgwzdxMuPbPz8tQn7o5xLpMP6og==
+  dependencies:
+    "@graphql-codegen/plugin-helpers" "^1.18.7"
+    "@graphql-codegen/typescript" "^1.22.1"
+    "@graphql-codegen/visitor-plugin-common" "1.21.0"
+    "@graphql-tools/utils" "^7.9.1"
+    auto-bind "~4.0.0"
+    tslib "~2.2.0"
+
+"@graphql-codegen/typescript@1.22.1", "@graphql-codegen/typescript@^1.22.1":
   version "1.22.1"
   resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript/-/typescript-1.22.1.tgz#9a2e215d4cf095d942c1671db4bad78b619b11ce"
   integrity sha512-3f/siciXrhhMdcs9qcxnwWXETsAhZNNiUOlr6IUEm82kVx5xvFuxc0KZZE88w3iEVJXE7xYo1oWmrttvkQP4Aw==
@@ -5208,6 +5220,13 @@ jest-message-util@^26.6.2:
     slash "^3.0.0"
     stack-utils "^2.0.2"
 
+jest-mock-extended@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/jest-mock-extended/-/jest-mock-extended-1.0.15.tgz#dbc176dadfcfb0b88c244c22f45bd04bdb33af7a"
+  integrity sha512-MFimmdIim0GF22Ire0cuuowATHUOeCRepj8C4ntlg8CeozZMQkas0TOqLJAZbv9bJzU+W9Z1jXcNesfP0x3/tw==
+  dependencies:
+    ts-essentials "^4.0.0"
+
 jest-mock@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-26.6.2.tgz#d6cb712b041ed47fe0d9b6fc3474bc6543feb302"
@@ -7706,6 +7725,11 @@ tr46@^2.0.2:
   integrity sha512-3n1qG+/5kg+jrbTzwAykB5yRYtQCTqOGKq5U5PE3b0a1/mzo6snDhjGS0zJVJunO0NrT3Dg1MLy5TjWP/UJppg==
   dependencies:
     punycode "^2.1.1"
+
+ts-essentials@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-4.0.0.tgz#506c42b270bbd0465574b90416533175b09205ab"
+  integrity sha512-uQJX+SRY9mtbKU+g9kl5Fi7AEMofPCvHfJkQlaygpPmHPZrtgaBqbWFOYyiA47RhnSwwnXdepUJrgqUYxoUyhQ==
 
 ts-invariant@^0.4.0:
   version "0.4.4"

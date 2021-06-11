@@ -1,24 +1,26 @@
 import { ApolloServer } from 'apollo-server';
-import { PrismaClient } from '@prisma/client';
+import dotenv from 'dotenv-safe';
 import schema from '@src/graphql/schema/schema';
-import { performTypeScriptCodegen, performAstCodegen } from '@src/codegen';
+import { performAstCodegen } from '@src/codegen';
+import prisma from '@src/prisma/client';
+import { IApolloServerContext } from './interfaces/IApolloServerContext';
+
+dotenv.config();
 
 const startServer = () => {
   performAstCodegen();
-  performTypeScriptCodegen();
 
-  const prisma = new PrismaClient();
+  const context: IApolloServerContext = {
+    prisma,
+  };
 
   const server = new ApolloServer({
     schema,
     playground: process.env.NODE_ENV !== 'production',
-    context: () => {
-      return {
-        prisma,
-      };
-    },
+    context,
   });
 
+  // The `listen` method launches a web server.
   server
     .listen()
     .then(({ url }) => {

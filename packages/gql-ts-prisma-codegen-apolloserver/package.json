@@ -1,7 +1,7 @@
 {
   "name": "gql-ts-prisma-codegen-apolloserver",
   "version": "1.0.0",
-  "description": "Node.js and typescript backend setup project for blog-tube",
+  "description": "GQL microservice project structure with prisma, codegen, apolloserver and typescript",
   "main": "index.js",
   "repository": "https://github.com/leoroese/blog-tube",
   "author": "Leonardo Roese",
@@ -13,11 +13,15 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "prisma:studio": "npx prisma studio",
-    "generate:migration": "npx prisma migrate dev"
+    "lint:fix": "eslint --fix .",
+    "generate": "graphql-codegen --config codegen.yml",
+    "generate:migration": "npx prisma migrate dev",
+    "prisma:studio": "npx prisma studio"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.5",
+    "@graphql-codegen/typescript": "1.22.1",
+    "@graphql-codegen/typescript-resolvers": "1.19.2",
     "@types/dotenv-safe": "^8.1.1",
     "@types/jest": "^26.0.20",
     "@types/node": "^14.14.33",
@@ -30,6 +34,7 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.3.1",
     "jest": "^26.6.3",
+    "jest-mock-extended": "^1.0.15",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
     "prisma": "^2.24.1",
@@ -42,7 +47,6 @@
     "@graphql-codegen/core": "^1.17.10",
     "@graphql-codegen/plugin-helpers": "^1.18.7",
     "@graphql-codegen/schema-ast": "^1.18.3",
-    "@graphql-codegen/typescript": "^1.22.1",
     "@prisma/client": "^2.24.1",
     "apollo-server": "^2.25.1",
     "dotenv-safe": "^8.2.0",

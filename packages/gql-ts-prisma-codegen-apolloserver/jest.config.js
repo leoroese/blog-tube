@@ -14,6 +14,7 @@ module.exports = {
   moduleNameMapper: {
     'src/(.*)': '<rootDir>/src/$1',
   },
+  setupFilesAfterEnv: ['<rootDir>/src/__tests__/__mocks__/prismaSingleton.ts'],
   moduleDirectories: ['node_modules', 'src'],
-  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],
+  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/', '<rootDir>/src/__tests__/__mocks__/'],
 };

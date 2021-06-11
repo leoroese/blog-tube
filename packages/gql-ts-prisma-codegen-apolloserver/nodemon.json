@@ -1,7 +1,7 @@
 {
   "watch": ["src"],
   "ext": "ts,js,json",
-  "ignore": ["node_modules", "coverage", "dist", "src/graphql/generated/*"],
+  "ignore": ["node_modules", "coverage", "dist"],
   "exec": "ts-node -r tsconfig-paths/register ./src/index.ts",
   "restartable": "rs",
   "env": {

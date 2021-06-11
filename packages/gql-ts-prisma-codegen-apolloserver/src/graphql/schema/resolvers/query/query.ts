@@ -1,5 +1,5 @@
 import { GraphQLObjectType } from 'graphql';
-import getAllBooksQuery from '@src/graphql/schema/query/book/GetAllBooksQuery';
+import getAllBooksQuery from '@src/graphql/schema/resolvers/query/getAllBooksQuery';
 
 const query = new GraphQLObjectType({
   name: 'Query',

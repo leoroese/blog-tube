@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as schemaAstPlugin from '@graphql-codegen/schema-ast';
-import * as typescriptPlugin from '@graphql-codegen/typescript';
 import { parse, printSchema } from 'graphql';
 import { Types } from '@graphql-codegen/plugin-helpers';
 import { codegen } from '@graphql-codegen/core';
@@ -15,21 +14,8 @@ async function performCodegen(options: Types.GenerateOptions): Promise<void> {
   });
 }
 
+// eslint-disable-next-line import/prefer-default-export
 export async function performAstCodegen(): Promise<void> {
-  const options: Types.GenerateOptions = {
-    config: { numericEnums: true },
-    documents: [],
-    filename: 'schema.graphql',
-    schema: parse(printSchema(schema)),
-    plugins: [{ 'schema-ast': {} }],
-    pluginMap: {
-      'schema-ast': schemaAstPlugin,
-    },
-  };
-  performCodegen(options);
-}
-
-export async function performTypeScriptCodegen(): Promise<void> {
   const options: Types.GenerateOptions = {
     config: {
       numericEnums: true,
@@ -37,11 +23,11 @@ export async function performTypeScriptCodegen(): Promise<void> {
       useIndexSignature: true,
     },
     documents: [],
-    filename: 'graphql.ts',
+    filename: 'schema.graphql',
     schema: parse(printSchema(schema)),
-    plugins: [{ typescript: {} }],
+    plugins: [{ 'schema-ast': {} }],
     pluginMap: {
-      typescript: typescriptPlugin,
+      'schema-ast': schemaAstPlugin,
     },
   };
   performCodegen(options);
