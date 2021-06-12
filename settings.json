@@ -5,6 +5,8 @@
     "terminal.integrated.lineHeight": 1.3,
     "workbench.iconTheme": "vscode-icons",
     "workbench.colorTheme": "Dracula Soft",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "terminal.integrated.defaultProfile.osx": "zsh",
     "terminal.integrated.profiles.windows": {
         "Git Bash": {
             "source": "Git Bash"
@@ -38,5 +40,5 @@
     "editor.formatOnSave": true,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter.notebook.ipynb"
-    }
+    },
 }
