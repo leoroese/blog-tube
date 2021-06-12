@@ -1,0 +1,42 @@
+{
+    "terminal.integrated.osx.fontFamily": "MesloLGS NF",
+    "terminal.integrated.windows.fontFamily": "monospace",
+    "terminal.integrated.rendererType": "canvas",
+    "terminal.integrated.lineHeight": 1.3,
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Dracula Soft",
+    "terminal.integrated.profiles.windows": {
+        "Git Bash": {
+            "source": "Git Bash"
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "zsh": {
+            "path": "/bin/zsh",
+            "args": [
+                "-l"
+            ]
+        },
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact"
+    ],
+    "files.eol": "\n",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "liveshare.authenticationProvider": "GitHub",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "editor.formatOnSave": true,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    }
+}
