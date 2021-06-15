@@ -2,7 +2,7 @@
 import { GraphQLNonNull } from 'graphql';
 import CreateBookInput from '@src/graphql/schema/typedefs/CreateBookInput';
 import GqlBook from '@src/graphql/schema/typedefs/GqlBook';
-import { IApolloServerContext } from '@src/interfaces/IApolloServerContext';
+import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { createBook } from '@src/data/bookService';
 import { Book } from '.prisma/client';
 

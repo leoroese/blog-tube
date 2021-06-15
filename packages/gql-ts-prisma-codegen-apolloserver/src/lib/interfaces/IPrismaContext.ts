@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 
-export interface Context {
+export interface IPrismaContext {
   prisma: PrismaClient;
 }

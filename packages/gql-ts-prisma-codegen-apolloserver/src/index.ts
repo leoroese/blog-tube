@@ -1,24 +1,14 @@
 import { ApolloServer } from 'apollo-server';
 import dotenv from 'dotenv-safe';
-import schema from '@src/graphql/schema/schema';
 import { performAstCodegen } from '@src/codegen';
-import prisma from '@src/prisma/client';
-import { IApolloServerContext } from './interfaces/IApolloServerContext';
-
+import apolloServerConfig from '@src/lib/config/apolloServerConfig'
 dotenv.config();
 
 const startServer = () => {
   performAstCodegen();
 
-  const context: IApolloServerContext = {
-    prisma,
-  };
 
-  const server = new ApolloServer({
-    schema,
-    playground: process.env.NODE_ENV !== 'production',
-    context,
-  });
+  const server = new ApolloServer(apolloServerConfig);
 
   // The `listen` method launches a web server.
   server

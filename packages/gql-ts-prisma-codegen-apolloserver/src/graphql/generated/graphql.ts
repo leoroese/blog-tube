@@ -1,12 +1,10 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { Context } from 'src/prisma/context';
-
+import { IPrismaContext } from 'src/lib/interfaces/IPrismaContext';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } &
-  { [P in K]-?: NonNullable<T[P]> };
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -29,13 +27,17 @@ export type Book = {
 
 /** Create book input */
 export type CreateBookInput = {
-  input?: Maybe<Input>;
+  /** An arbitrary integer. */
+  title: Scalars['String'];
+  /** An arbitrary integer. */
+  author: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   createBook?: Maybe<Book>;
 };
+
 
 export type MutationCreateBookArgs = {
   input: CreateBookInput;
@@ -46,17 +48,11 @@ export type Query = {
   books?: Maybe<Array<Maybe<Book>>>;
 };
 
-export type Input = {
-  /** An arbitrary integer. */
-  title: Scalars['String'];
-  /** An arbitrary integer. */
-  author: Scalars['String'];
-};
-
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
+
 
 export type LegacyStitchingResolver<TResult, TParent, TContext, TArgs> = {
   fragment: string;
@@ -67,9 +63,7 @@ export type NewStitchingResolver<TResult, TParent, TContext, TArgs> = {
   selectionSet: string;
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
 };
-export type StitchingResolver<TResult, TParent, TContext, TArgs> =
-  | LegacyStitchingResolver<TResult, TParent, TContext, TArgs>
-  | NewStitchingResolver<TResult, TParent, TContext, TArgs>;
+export type StitchingResolver<TResult, TParent, TContext, TArgs> = LegacyStitchingResolver<TResult, TParent, TContext, TArgs> | NewStitchingResolver<TResult, TParent, TContext, TArgs>;
 export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
   | ResolverFn<TResult, TParent, TContext, TArgs>
   | StitchingResolver<TResult, TParent, TContext, TArgs>;
@@ -119,11 +113,7 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   info: GraphQLResolveInfo
 ) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type IsTypeOfResolverFn<T = {}, TContext = {}> = (
-  obj: T,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => boolean | Promise<boolean>;
+export type IsTypeOfResolverFn<T = {}, TContext = {}> = (obj: T, context: TContext, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
@@ -143,7 +133,6 @@ export type ResolversTypes = ResolversObject<{
   CreateBookInput: CreateBookInput;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
-  input: Input;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
@@ -155,47 +144,33 @@ export type ResolversParentTypes = ResolversObject<{
   CreateBookInput: CreateBookInput;
   Mutation: {};
   Query: {};
-  input: Input;
   Boolean: Scalars['Boolean'];
 }>;
 
-export type BookResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']
-> = ResolversObject<{
+export type BookResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   author?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type MutationResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']
-> = ResolversObject<{
-  createBook?: Resolver<
-    Maybe<ResolversTypes['Book']>,
-    ParentType,
-    ContextType,
-    RequireFields<MutationCreateBookArgs, 'input'>
-  >;
+export type MutationResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
+  createBook?: Resolver<Maybe<ResolversTypes['Book']>, ParentType, ContextType, RequireFields<MutationCreateBookArgs, 'input'>>;
 }>;
 
-export type QueryResolvers<
-  ContextType = Context,
-  ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']
-> = ResolversObject<{
+export type QueryResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
 }>;
 
-export type Resolvers<ContextType = Context> = ResolversObject<{
+export type Resolvers<ContextType = IPrismaContext> = ResolversObject<{
   Book?: BookResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 }>;
 
+
 /**
  * @deprecated
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
-export type IResolvers<ContextType = Context> = Resolvers<ContextType>;
+export type IResolvers<ContextType = IPrismaContext> = Resolvers<ContextType>;
