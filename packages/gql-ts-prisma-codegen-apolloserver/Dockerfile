@@ -4,15 +4,19 @@ WORKDIR /app
 
 RUN apk update && apk add bash
 
-# Install dependencies
+
 COPY package*.json yarn.lock /app/
 
-COPY config/.env.docker /app/config/.env.test
+COPY config/.env.docker /app/.env
+COPY .env.example /app/.env.example
+COPY config/.env.docker.test /app/config/.env.test
 
 # copy source files
 COPY src /app/src
 
 COPY tsconfig.json /app/tsconfig.json
+
+COPY tsconfig.prod.json /app/tsconfig.prod.json
 
 COPY jest.config.js /app/jest.config.js
 
@@ -26,4 +30,6 @@ RUN yarn install --frozen-lockfile
 
 RUN yarn generate
 RUN yarn prisma generate
-RUN yarn build && yarn start
+
+RUN yarn build
+CMD [ "yarn", "start" ]
