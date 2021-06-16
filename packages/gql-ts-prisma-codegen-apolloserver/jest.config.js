@@ -1,7 +1,3 @@
-const env = process.NODE_ENV;
-
-console.log('env', env);
-
 module.exports = {
   preset: 'ts-jest',
   rootDir: '.',

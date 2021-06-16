@@ -7,6 +7,8 @@ RUN apk update && apk add bash
 # Install dependencies
 COPY package*.json yarn.lock /app/
 
+COPY config/.env.docker /app/config/.env.test
+
 # copy source files
 COPY src /app/src
 
@@ -24,3 +26,4 @@ RUN yarn install --frozen-lockfile
 
 RUN yarn generate
 RUN yarn prisma generate
+RUN yarn build && yarn start

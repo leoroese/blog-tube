@@ -8,8 +8,8 @@ services:
     build:
       context: '.'
       target: base
-    environment:
-      DATABASE_URL: postgresql://prisma:prisma@db:5432/tests
+    ports:
+      - '4000:4000'
     depends_on:
       - db
     networks:
@@ -18,8 +18,8 @@ services:
     image: postgres:13
     restart: always
     container_name: db
-    expose:
-      - 5432
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma

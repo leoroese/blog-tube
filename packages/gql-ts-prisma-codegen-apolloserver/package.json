@@ -8,13 +8,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
     "build": "tsc -p tsconfig.prod.json",
     "test": "yarn test:unit && yarn test:integration",
     "test:unit": "jest unit",
-    "test:integration": "jest -i int",
-    "test:environment:local": "dotenv -e ./.env.test yarn generate:reset && dotenv -e ./.env.test yarn test",
-    "test:environment:docker": "yarn docker:up && yarn docker:test:run & yarn docker:down",
+    "test:integration": "dotenv -e ./config/.env.test yarn generate:reset && dotenv -e ./config/.env.test jest int -i",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint:fix": "eslint --fix .",
@@ -22,9 +20,10 @@
     "generate:migration": "npx prisma migrate dev",
     "generate:reset": "npx prisma migrate reset --force",
     "prisma:studio": "npx prisma studio",
-    "docker:up": "docker-compose up -d --build",
+    "test:environment:docker": "yarn docker:up && yarn docker:test:run & yarn docker:down",
+    "docker:up": "docker-compose up -d",
     "docker:down": "docker compose down",
-    "docker:test:run": "docker-compose run --rm server ./bin/wait-for-it.sh db:5432 -- yarn generate:reset && docker-compose run --rm server yarn test"
+    "docker:test:run": "docker-compose run --rm server ./bin/wait-for-it.sh db:5432 -- yarn test"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.5",
@@ -57,6 +56,7 @@
     "@graphql-codegen/schema-ast": "^1.18.3",
     "@prisma/client": "^2.24.1",
     "apollo-server": "^2.25.1",
+    "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
     "graphql": "^15.5.0"
   }
