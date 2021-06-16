@@ -21,9 +21,9 @@
     "generate:reset": "npx prisma migrate reset --force",
     "prisma:studio": "npx prisma studio",
     "test:environment:docker": "yarn docker:up && yarn docker:test:run & yarn docker:down",
-    "docker:up": "docker-compose up -d",
+    "docker:up": "docker-compose up -d --build",
     "docker:down": "docker compose down",
-    "docker:test:run": "docker-compose run --rm server ./bin/wait-for-it.sh db:5432 -- yarn test"
+    "docker:test:run": "docker exec server ./bin/wait-for-it.sh db:5432 -- yarn test"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.5",
