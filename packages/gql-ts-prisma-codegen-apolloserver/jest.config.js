@@ -1,5 +1,6 @@
 module.exports = {
   preset: 'ts-jest',
+  rootDir: '.',
   testEnvironment: 'node',
   coverageDirectory: 'coverage',
   collectCoverageFrom: ['src/**/*.{js,ts}'],
@@ -12,9 +13,9 @@ module.exports = {
     },
   },
   moduleNameMapper: {
-    'src/(.*)': '<rootDir>/src/$1',
+    '@src/(.*)': '<rootDir>/src/$1',
   },
-  setupFilesAfterEnv: ['<rootDir>/src/__tests__/__mocks__/prismaSingleton.ts'],
-  moduleDirectories: ['node_modules', 'src'],
+  setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
+  moduleDirectories: ['src', 'node_modules'],
   testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/', '<rootDir>/src/__tests__/__mocks__/'],
 };

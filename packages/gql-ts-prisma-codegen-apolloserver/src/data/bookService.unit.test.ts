@@ -1,5 +1,5 @@
 import { Book } from '@prisma/client';
-import prismaMock from '@src/__tests__/__mocks__/prismaSingleton';
+import prismaMock from '@src/__tests__/__mocks__/prismaMock';
 import { createBook } from '@src/data/bookService';
 
 describe('book service tests', () => {

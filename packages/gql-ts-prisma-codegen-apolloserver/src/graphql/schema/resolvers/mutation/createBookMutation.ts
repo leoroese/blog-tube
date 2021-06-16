@@ -20,7 +20,8 @@ const createBookMutation = {
     { input: { title, author } }: any,
     _context: IApolloServerContext
   ): Promise<Book> => {
-    return createBook(title, author);
+    const createdBook = await createBook(title, author);
+    return createdBook;
   },
 };
 

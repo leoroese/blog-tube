@@ -10,14 +10,15 @@
     "dev": "nodemon",
     "prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
     "build": "tsc -p tsconfig.prod.json",
-    "test": "jest",
-    "test:integration": "yarn docker:up && yarn migration:init && jest -i",
+    "test": "yarn test:unit && yarn test:integration",
+    "test:unit": "jest unit",
+    "test:integration": "yarn docker:up && yarn migration:postgres && jest -i int && yarn docker:down",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint:fix": "eslint --fix .",
     "generate": "graphql-codegen --config codegen.yml",
     "generate:migration": "npx prisma migrate dev",
-    "migration:init": "npx prisma migrate dev --name init",
+    "migration:postgres": "dotenv -e .env.test npx prisma migrate dev --name postgres-init",
     "prisma:studio": "npx prisma studio",
     "docker:up": "docker-compose up -d",
     "docker:down": "docker compose down"
@@ -53,7 +54,7 @@
     "@graphql-codegen/schema-ast": "^1.18.3",
     "@prisma/client": "^2.24.1",
     "apollo-server": "^2.25.1",
-    "apollo-server-express": "^2.25.1",
+    "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
     "graphql": "^15.5.0"
   }

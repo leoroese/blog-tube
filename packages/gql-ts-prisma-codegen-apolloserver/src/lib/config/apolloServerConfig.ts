@@ -1,11 +1,10 @@
-import { ApolloServerExpressConfig } from 'apollo-server-express';
 import schema from '@src/graphql/schema/schema';
 import apolloServerContext from '@src/lib/config/apolloServerContext';
 
-const ApolloServerConfig: ApolloServerExpressConfig = {
+const apolloServerConfig = {
   schema,
   playground: process.env.NODE_ENV !== 'production',
   context: apolloServerContext,
 };
 
-export default ApolloServerConfig;
+export default apolloServerConfig;
