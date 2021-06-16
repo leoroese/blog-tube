@@ -1,3 +1,7 @@
+const env = process.NODE_ENV;
+
+console.log('env', env);
+
 module.exports = {
   preset: 'ts-jest',
   rootDir: '.',
@@ -15,7 +19,6 @@ module.exports = {
   moduleNameMapper: {
     '@src/(.*)': '<rootDir>/src/$1',
   },
-  setupFilesAfterEnv: ['<rootDir>/test-setup.ts'],
   moduleDirectories: ['src', 'node_modules'],
   testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/', '<rootDir>/src/__tests__/__mocks__/'],
 };

@@ -3,13 +3,30 @@ version: '3.9'
 
 # The containers that compose the project
 services:
+  server:
+    container_name: server
+    build:
+      context: '.'
+      target: base
+    environment:
+      DATABASE_URL: postgresql://prisma:prisma@db:5432/tests
+    depends_on:
+      - db
+    networks:
+      - test_vm
   db:
     image: postgres:13
     restart: always
-    container_name: integration-tests-gql-prisma
-    ports:
-      - '5433:5432'
+    container_name: db
+    expose:
+      - 5432
     environment:
-      POSTGRES_USER: [username]
-      POSTGRES_PASSWORD: [password]
+      POSTGRES_USER: prisma
+      POSTGRES_PASSWORD: prisma
       POSTGRES_DB: tests
+    networks:
+      - test_vm
+networks:
+  test_vm:
+    name: test_vm
+    driver: bridge

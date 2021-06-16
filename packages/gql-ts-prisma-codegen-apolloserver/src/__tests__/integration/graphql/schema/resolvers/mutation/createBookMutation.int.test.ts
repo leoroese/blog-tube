@@ -24,7 +24,7 @@ describe('tests', () => {
   });
 
   afterAll(async () => {
-    prismaContext.prisma.book.deleteMany();
+    await prismaContext.prisma.book.deleteMany();
     await prismaContext.prisma.$disconnect();
   });
 
@@ -43,7 +43,7 @@ describe('tests', () => {
     expect(result?.data?.createBook).toBeDefined();
     const createdBook = result?.data?.createBook;
     expect(createdBook.__typename).toBe(typename);
-    expect(createdBook.id).toBeDefined();
+    expect(createdBook.id).toBe("1");
     expect(createdBook.title).toBe(mockBook.title);
     expect(createdBook.author).toBe(mockBook.author);
   });

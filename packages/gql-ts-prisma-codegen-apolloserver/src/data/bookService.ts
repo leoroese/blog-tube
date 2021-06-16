@@ -1,5 +1,5 @@
+import { Book } from '@prisma/client';
 import prismaContext from '@src/lib/prisma/prismaContext';
-import { Book } from '.prisma/client';
 
 export const getAllBooks = async (): Promise<Book[]> => {
   return prismaContext.prisma.book.findMany();

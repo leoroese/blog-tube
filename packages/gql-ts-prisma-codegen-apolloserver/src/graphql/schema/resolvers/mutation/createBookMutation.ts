@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { GraphQLNonNull } from 'graphql';
+import { Book } from '@prisma/client';
 import CreateBookInput from '@src/graphql/schema/typedefs/CreateBookInput';
 import GqlBook from '@src/graphql/schema/typedefs/GqlBook';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { createBook } from '@src/data/bookService';
-import { Book } from '.prisma/client';
 
 const createBookMutation = {
   type: GqlBook,
