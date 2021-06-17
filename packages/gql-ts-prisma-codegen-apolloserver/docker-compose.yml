@@ -5,6 +5,8 @@ version: '3.9'
 services:
   server:
     container_name: server
+    environment:
+      DATABASE_URL: postgresql://prisma:prisma@db:5432/bookdb?schema=public
     build:
       context: '.'
       target: base

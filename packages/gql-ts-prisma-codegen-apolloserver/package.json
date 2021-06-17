@@ -12,7 +12,7 @@
     "build": "tsc -p tsconfig.prod.json",
     "test": "yarn test:unit && yarn test:integration",
     "test:unit": "jest unit",
-    "test:integration": "dotenv -e ./config/.env.test yarn generate:reset && dotenv -e ./config/.env.test jest int -i",
+    "test:integration": "dotenv -e ./.env.test yarn generate:reset && dotenv -e ./.env.test jest int -i",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint:fix": "eslint --fix .",
