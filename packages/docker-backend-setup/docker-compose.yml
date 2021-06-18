@@ -5,13 +5,14 @@ version: '3.9'
 services:
   server:
     container_name: server
+    image: docker-setup
     environment:
       DATABASE_URL: postgresql://prisma:prisma@db:5432/tests?schema=public
-    build:
-      context: '.'
-      target: base
+    # build:
+    #   context: '.'
+    #   target: base
     ports:
-      - '4000:4000'
+      - '3000:3000'
     depends_on:
       - db
     networks:

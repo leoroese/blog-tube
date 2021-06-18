@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "prod": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
     "build": "tsc -p tsconfig.prod.json",
     "test": "jest",
     "test:watch": "jest --watch",
