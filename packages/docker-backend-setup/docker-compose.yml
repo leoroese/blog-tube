@@ -5,28 +5,28 @@ version: '3.9'
 services:
   server:
     container_name: server
-    image: docker-setup
+    image: docker-setup:v1
     environment:
-      DATABASE_URL: postgresql://prisma:prisma@db:5432/tests?schema=public
+      NAME: Boot
     # build:
     #   context: '.'
     #   target: base
     ports:
       - '3000:3000'
-    depends_on:
-      - db
+    volumes:
+      - ./src/:/app/src
     networks:
       - test_vm
-  db:
-    image: postgres:13
-    restart: always
-    container_name: db
-    ports:
-      - '5432:5432'
+  server2:
+    container_name: server2
+    image: docker-setup:v2
     environment:
-      POSTGRES_USER: prisma
-      POSTGRES_PASSWORD: prisma
-      POSTGRES_DB: tests
+      NAME: Heels
+    # build:
+    #   context: '.'
+    #   target: base
+    expose:
+      - 3000
     networks:
       - test_vm
 networks:

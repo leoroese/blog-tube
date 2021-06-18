@@ -18,5 +18,4 @@ COPY tsconfig.prod.json /app/tsconfig.prod.json
 
 RUN yarn install --frozen-lockfile 
 
-RUN yarn build
-CMD [ "yarn", "start" ]
+CMD [ "yarn", "docker:start" ]
