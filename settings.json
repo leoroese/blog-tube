@@ -4,10 +4,11 @@
     "workbench.colorTheme": "Dracula Soft",
     "terminal.integrated.defaultProfile.windows": "Git Bash",
     "terminal.integrated.defaultProfile.osx": "zsh",
+    // "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontFamily": "monospace",
     "terminal.integrated.profiles.windows": {
         "Git Bash": {
             "source": "Git Bash",
-            "terminal.integrated.fontFamily": "monospace",
         }
     },
     "terminal.integrated.profiles.osx": {
@@ -16,7 +17,6 @@
             "args": [
                 "-l"
             ],
-            "terminal.integrated.fontFamily": "MesloLGS NF",
         },
     },
     "editor.codeActionsOnSave": {
@@ -43,4 +43,5 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
+    "window.zoomLevel": 1,
 }
