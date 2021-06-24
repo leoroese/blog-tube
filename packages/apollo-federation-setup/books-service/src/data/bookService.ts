@@ -5,6 +5,10 @@ export const getAllBooks = async (): Promise<Book[]> => {
   return prismaContext.prisma.book.findMany();
 };
 
+export const getAllBooksByAuthor = async (authorId: number): Promise<Book[]> => {
+  return prismaContext.prisma.book.findMany({ where: { authorId } });
+};
+
 export const createBook = async (title: string, authorId: number): Promise<Book> => {
   const book = await prismaContext.prisma.book.create({ data: { title, authorId } });
   return book;

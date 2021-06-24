@@ -1,6 +1,10 @@
 type Query {
   books: [Book]
   authors: [Author]
+  author(
+    """AuthorId"""
+    authorId: Int!
+  ): Author
 }
 
 """A book"""
@@ -10,6 +14,9 @@ type Book {
 
   """title of book"""
   title: String
+
+  """author of book"""
+  author: Author
 
   """Id of the author who wrote book"""
   authorId: Int
