@@ -29,6 +29,9 @@ type Author {
 
   """name of the author"""
   name: String
+
+  """list of authors books"""
+  books: [Book]
 }
 
 type Mutation {
