@@ -1,4 +1,4 @@
-import { GraphQLInputObjectType, GraphQLNonNull, GraphQLString } from 'graphql';
+import { GraphQLInputObjectType, GraphQLInt, GraphQLNonNull, GraphQLString } from 'graphql';
 
 const CreateBookInput = new GraphQLInputObjectType({
   name: 'CreateBookInput',
@@ -8,8 +8,8 @@ const CreateBookInput = new GraphQLInputObjectType({
       type: new GraphQLNonNull(GraphQLString),
       description: 'An arbitrary integer.',
     },
-    author: {
-      type: new GraphQLNonNull(GraphQLString),
+    authorId: {
+      type: new GraphQLNonNull(GraphQLInt),
       description: 'An arbitrary integer.',
     },
   },

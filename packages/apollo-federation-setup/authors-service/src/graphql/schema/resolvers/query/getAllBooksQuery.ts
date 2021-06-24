@@ -1,11 +1,11 @@
 import { GraphQLList } from 'graphql';
 import { Book } from '@prisma/client';
-import GqlBook from '@src/graphql/schema/typedefs/GqlBook';
+import BookType from '@src/graphql/schema/typedefs/BookType';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { getAllBooks } from '@src/data/bookService';
 
 const getAllBooksQuery = {
-  type: GraphQLList(GqlBook),
+  type: GraphQLList(BookType),
   resolve: async (
     _source: unknown,
     _args: unknown,

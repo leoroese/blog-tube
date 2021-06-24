@@ -11,7 +11,14 @@ generator client {
 }
 
 model Book {
-  id Int @id @default(autoincrement())
-  title String
-  author String
+  bookId   Int    @id @default(autoincrement())
+  title    String
+  author   Author @relation(fields: [authorId], references: [authorId])
+  authorId Int
+}
+
+model Author {
+  authorId Int    @id @default(autoincrement())
+  name     String
+  Book     Book[]
 }

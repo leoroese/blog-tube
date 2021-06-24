@@ -8,7 +8,7 @@ const CREATE_BOOK_MUTATION = gql`
   mutation CreateBook($input: CreateBookInput!) {
     createBook(input: $input) {
       __typename
-      id
+      bookId
       title
       author
     }
@@ -43,7 +43,7 @@ describe('tests', () => {
     expect(result?.data?.createBook).toBeDefined();
     const createdBook = result?.data?.createBook;
     expect(createdBook.__typename).toBe(typename);
-    expect(createdBook.id).toBeDefined();
+    expect(createdBook.bookId).toBeDefined();
     expect(createdBook.title).toBe(mockBook.title);
     expect(createdBook.author).toBe(mockBook.author);
   });

@@ -1,17 +1,34 @@
 type Query {
   books: [Book]
+  authors: [Author]
+  author(
+    """AuthorId"""
+    authorId: Int!
+  ): Author
 }
 
 """A book"""
 type Book {
   """id of the book"""
-  id: ID!
+  bookId: ID!
 
   """title of book"""
   title: String
 
   """author of book"""
-  author: String
+  author: Author
+
+  """Id of the author who wrote book"""
+  authorId: Int
+}
+
+"""The Author"""
+type Author {
+  """id of the author"""
+  authorId: ID!
+
+  """name of the author"""
+  name: String
 }
 
 type Mutation {
@@ -19,6 +36,10 @@ type Mutation {
     """Book input to be created"""
     input: CreateBookInput!
   ): Book
+  createAuthor(
+    """Author input to be created"""
+    input: CreateAuthorInput!
+  ): Author
 }
 
 """Create book input"""
@@ -27,5 +48,11 @@ input CreateBookInput {
   title: String!
 
   """An arbitrary integer."""
-  author: String!
+  authorId: Int!
+}
+
+"""Create book input"""
+input CreateAuthorInput {
+  """Authors name."""
+  name: String!
 }

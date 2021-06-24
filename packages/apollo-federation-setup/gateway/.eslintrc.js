@@ -24,11 +24,6 @@ module.exports = {
     'import/extensions': 'off',
     'import/no-unresolved': 'error',
     'no-console': 'off',
-    'no-explicit-any': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    'no-unused-vars': ['off', { args: 'all', argsIgnorePattern: '^_' }],
-    '@typescript-eslint/no-unused-vars': ['off', { args: 'all', argsIgnorePattern: '^_' }],
     'import/order': [
       'error',
       {
