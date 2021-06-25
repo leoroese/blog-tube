@@ -2,14 +2,6 @@
 # yarn lockfile v1
 
 
-"@apollo/federation@^0.25.2":
-  version "0.25.2"
-  resolved "https://registry.yarnpkg.com/@apollo/federation/-/federation-0.25.2.tgz#10b2e22ac20e64701fd6d31d9abbf7f411b03763"
-  integrity sha512-TrRCrGniHpnRwALm2J7q2c1X4Lcc95e7SeHkVjascaQx6nBZGFbBXadw8rOPxlw5syfxYf8h9winF+wwld+gsg==
-  dependencies:
-    apollo-graphql "^0.9.3"
-    lodash.xorby "^4.7.0"
-
 "@apollo/protobufjs@1.2.2":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@apollo/protobufjs/-/protobufjs-1.2.2.tgz#4bd92cd7701ccaef6d517cdb75af2755f049f87c"
@@ -5796,11 +5788,6 @@ lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
   integrity sha1-7dFMgk4sycHgsKG0K7UhBRakJDg=
-
-lodash.xorby@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/lodash.xorby/-/lodash.xorby-4.7.0.tgz#9c19a6f9f063a6eb53dd03c1b6871799801463d7"
-  integrity sha1-nBmm+fBjputT3QPBtocXmYAUY9c=
 
 lodash@4.17.21, lodash@4.x, lodash@^4.17.15, lodash@^4.17.19, lodash@^4.17.20, lodash@~4.17.0:
   version "4.17.21"

@@ -1,5 +1,5 @@
 {
-  "name": "apollo-federation-test",
+  "name": "gql-typescript-prisma-codegen-apolloserver",
   "version": "1.0.0",
   "description": "GQL microservice project structure with prisma, codegen, apolloserver and typescript",
   "main": "index.js",
