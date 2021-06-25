@@ -2,7 +2,7 @@ import { GraphQLFieldConfig, GraphQLFieldResolver, GraphQLList } from 'graphql';
 import { Book } from '@prisma/client';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { getAllBooks } from '@src/data/bookService';
-import BookType from '../../typedefs/BookType';
+import BookType from '@src/graphql/schema/typedefs/BookType';
 
 export const getAllBooksQueryResolver: GraphQLFieldResolver<
   unknown,

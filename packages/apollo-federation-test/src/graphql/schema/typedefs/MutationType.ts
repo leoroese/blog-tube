@@ -1,8 +1,6 @@
 import { GraphQLObjectType } from 'graphql';
-import createAuthorMutation from '../resolvers/mutation/createAuthorMutation';
-import createBookMutation from '../resolvers/mutation/createBookMutation';
-import getAllAuthorsQuery from '../resolvers/query/getAllAuthorsQuery';
-import getAllBooksQuery from '../resolvers/query/getAllBooksQuery';
+import createAuthorMutation from '@src/graphql/schema/resolvers/mutation/createAuthorMutation';
+import createBookMutation from '@src/graphql/schema/resolvers/mutation/createBookMutation';
 
 const mutationType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Mutation',

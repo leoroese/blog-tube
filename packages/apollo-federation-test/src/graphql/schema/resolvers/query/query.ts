@@ -1,4 +1,3 @@
-import { GraphQLObjectType } from 'graphql';
 import { getAllBooksQueryResolver } from '@src/graphql/schema/resolvers/query/getAllBooksQuery';
 import { getAllAuthorsResolver } from '@src/graphql/schema/resolvers/query/getAllAuthorsQuery';
 

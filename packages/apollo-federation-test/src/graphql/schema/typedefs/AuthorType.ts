@@ -6,7 +6,7 @@ import {
   GraphQLList,
 } from 'graphql';
 // eslint-disable-next-line import/no-cycle
-import BookType from './BookType';
+import BookType from '@src/graphql/schema/typedefs/BookType';
 
 const AuthorType: GraphQLObjectType = new GraphQLObjectType({
   name: 'Author',

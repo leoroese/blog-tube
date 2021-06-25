@@ -2,7 +2,7 @@ import { GraphQLFieldConfig, GraphQLFieldResolver, GraphQLList } from 'graphql';
 import { Author } from '@prisma/client';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { getAllAuthors } from '@src/data/authorService';
-import AuthorType from '../../typedefs/AuthorType';
+import AuthorType from '@src/graphql/schema/typedefs/AuthorType';
 
 export const getAllAuthorsResolver: GraphQLFieldResolver<
   unknown,

@@ -3,8 +3,8 @@ import { GraphQLFieldConfig, GraphQLFieldResolver } from 'graphql';
 import { Book } from '@prisma/client';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { createBook } from '@src/data/bookService';
-import BookType from '../../typedefs/BookType';
-import CreateBookInput from '../../typedefs/CreateBookInput';
+import BookType from '@src/graphql/schema/typedefs/BookType';
+import CreateBookInput from '@src/graphql/schema/typedefs/CreateBookInput';
 
 export const createBookMutationResolver: GraphQLFieldResolver<
   unknown,

@@ -3,8 +3,8 @@ import { Author, Book } from '@prisma/client';
 import { getAuthorById } from '@src/data/authorService';
 import { getBooksByAuthor } from '@src/data/bookService';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
-import mutation from './mutation/mutation';
-import query from './query/query';
+import mutation from '@src/graphql/schema/resolvers/mutation/mutation';
+import query from '@src/graphql/schema/resolvers/query/query';
 
 const resolvers: GraphQLResolverMap<IApolloServerContext> = {
   Query: query,

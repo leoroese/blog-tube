@@ -1,13 +1,9 @@
-import {
-  GraphQLFieldConfig,
-  GraphQLFieldConfigArgumentMap,
-  GraphQLFieldResolver,
-} from 'graphql';
+import { GraphQLFieldConfig, GraphQLFieldResolver } from 'graphql';
 import { Author } from '@prisma/client';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { createAuthor } from '@src/data/authorService';
-import AuthorType from '../../typedefs/AuthorType';
-import CreateAuthorInput from '../../typedefs/CreateAuthorInput';
+import AuthorType from '@src/graphql/schema/typedefs/AuthorType';
+import CreateAuthorInput from '@src/graphql/schema/typedefs/CreateAuthorInput';
 
 export const createAuthorMutationResolver: GraphQLFieldResolver<
   unknown,
