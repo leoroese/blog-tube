@@ -1,0 +1,57 @@
+type Query {
+  """Get all books query"""
+  books: [Book]
+
+  """Get all authors query"""
+  authors: [Author]
+}
+
+"""A book"""
+type Book {
+  """id of the book"""
+  bookId: ID!
+
+  """title of book"""
+  title: String
+
+  """author of book"""
+  author: Author
+
+  """id of the author"""
+  authorId: Int
+}
+
+"""A author"""
+type Author {
+  """id of the author"""
+  authorId: ID!
+
+  """authors username"""
+  username: String
+
+  """list of authors books"""
+  books: [Book]
+}
+
+type Mutation {
+  """Create book"""
+  createBook(input: CreateBookInput): Book
+
+  """create author"""
+  createAuthor(input: CreateAuthorInput): Author
+}
+
+"""Create book input"""
+input CreateBookInput {
+  """The books title."""
+  title: String!
+
+  """The authors id."""
+  authorId: Int!
+}
+
+"""Create author input"""
+input CreateAuthorInput {
+  """The authors username"""
+  username: String!
+}
