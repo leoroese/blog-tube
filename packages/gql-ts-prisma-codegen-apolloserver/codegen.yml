@@ -9,3 +9,4 @@ generates:
     config:
       contextType: src/lib/interfaces/IPrismaContext#IPrismaContext
       useIndexSignature: true
+      federation: true
