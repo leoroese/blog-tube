@@ -8,15 +8,27 @@ directive @requires(fields: String!) on FIELD_DEFINITION
 
 directive @provides(fields: String!) on FIELD_DEFINITION
 
-type Query {
-  _service: _Service!
-
-  """Get all books query"""
-  books: [Book]
-
-  """Get all authors query"""
-  authors: [Author]
+type Book {
+  bookId: ID!
+  title: String
+  author: Author
 }
+
+input CreateBookInput {
+  title: String
+  authorId: Int
+}
+
+type Query {
+  _entities(representations: [_Any!]!): [_Entity]!
+  _service: _Service!
+  books: [Book]
+  booksByAuthor(authorId: Int): [Book]
+}
+
+union _Entity = Book | Author
+
+scalar _Any
 
 type _Service {
   """
@@ -25,52 +37,11 @@ type _Service {
   sdl: String
 }
 
-"""A book"""
-type Book {
-  """id of the book"""
-  bookId: ID!
-
-  """title of book"""
-  title: String
-
-  """author of book"""
-  author: Author
-
-  """id of the author"""
-  authorId: Int
-}
-
-"""A author"""
-type Author {
-  """id of the author"""
-  authorId: ID!
-
-  """authors username"""
-  username: String
-
-  """list of authors books"""
-  books: [Book]
-}
-
 type Mutation {
-  """Create book"""
-  createBook(input: CreateBookInput): Book
-
-  """create author"""
-  createAuthor(input: CreateAuthorInput): Author
+  createBook(input: CreateBookInput!): Book!
 }
 
-"""Create book input"""
-input CreateBookInput {
-  """The books title."""
-  title: String!
-
-  """The authors id."""
-  authorId: Int!
-}
-
-"""Create author input"""
-input CreateAuthorInput {
-  """The authors username"""
-  username: String!
+type Author {
+  authorId: ID!
+  books: [Book]
 }

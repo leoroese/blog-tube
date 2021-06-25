@@ -10,7 +10,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Book {
-  bookId Int    @id @default(autoincrement())
-  title  String
+model Author {
+  authorId Int    @id @default(autoincrement())
+  username String
 }

@@ -11,6 +11,10 @@ const startServer = () => {
         name: 'books',
         url: process.env.BOOKS_SERVICE_URL,
       },
+      {
+        name: 'authors',
+        url: process.env.AUTHORS_SERVICE_URL,
+      },
     ],
   });
 

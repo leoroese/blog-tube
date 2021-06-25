@@ -1,12 +1,12 @@
-import { getAllBooksQueryResolver } from '@src/graphql/schema/resolvers/query/getAllBooksQuery';
-import { getAllAuthorsResolver } from '@src/graphql/schema/resolvers/query/getAllAuthorsQuery';
+import getAllBooksQuery from '@src/graphql/schema/resolvers/query/getAllBooksQuery';
+import getAllBooksByAuthorQuery from './getBooksByAuthorQuery';
 
 const query = {
   books: {
-    resolve: getAllBooksQueryResolver,
+    resolve: getAllBooksQuery,
   },
-  authors: {
-    resolve: getAllAuthorsResolver,
+  booksByAuthor: {
+    resolve: getAllBooksByAuthorQuery,
   },
 };
 

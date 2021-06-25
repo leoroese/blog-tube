@@ -1,12 +1,8 @@
-import { createBookMutationResolver } from '@src/graphql/schema/resolvers/mutation/createBookMutation';
-import { createAuthorMutationResolver } from '@src/graphql/schema/resolvers/mutation/createAuthorMutation';
+import createBookMutation from '@src/graphql/schema/resolvers/mutation/createBookMutation';
 
 const mutation = {
   createBook: {
-    resolve: createBookMutationResolver,
-  },
-  createAuthor: {
-    resolve: createAuthorMutationResolver,
+    resolve: createBookMutation,
   },
 };
 
