@@ -6,7 +6,7 @@ services:
   server:
     container_name: server
     environment:
-      DATABASE_URL: postgresql://prisma:prisma@db:5432/tests?schema=public
+      DATABASE_URL: postgresql://prisma:prisma@db:5432/bookdb?schema=public
     build:
       context: '.'
       target: base

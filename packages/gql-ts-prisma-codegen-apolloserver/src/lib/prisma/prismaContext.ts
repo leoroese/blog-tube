@@ -1,4 +1,4 @@
-import { IPrismaContext } from '../interfaces/IPrismaContext';
+import { IPrismaContext } from '@src/lib/interfaces/IPrismaContext';
 import prisma from '@src/lib/prisma/prismaClient';
 
 const prismaContext: IPrismaContext = {

@@ -2,9 +2,8 @@ FROM node:14.15.4-alpine3.10 AS base
 
 WORKDIR /app
 
-RUN apk update \ 
-  && apk add bash \
-  && rm -rf /var/cache/apk/*
+RUN apk update && apk add bash
+
 
 COPY package*.json yarn.lock /app/
 

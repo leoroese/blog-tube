@@ -1,19 +1,21 @@
-import { GraphQLList } from 'graphql';
+import { GraphQLFieldConfig, GraphQLFieldResolver, GraphQLList } from 'graphql';
 import { Book } from '@prisma/client';
-import GqlBook from '@src/graphql/schema/typedefs/GqlBook';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { getAllBooks } from '@src/data/bookService';
+import BookType from '@src/graphql/schema/typedefs/BookType';
 
-const getAllBooksQuery = {
-  type: GraphQLList(GqlBook),
-  resolve: async (
-    _source: unknown,
-    _args: unknown,
-    _context: IApolloServerContext,
-    _info: unknown
-  ): Promise<Book[]> => {
-    return getAllBooks();
-  },
+export const getAllBooksQueryResolver: GraphQLFieldResolver<
+  unknown,
+  IApolloServerContext
+> = async (_source, _args, _context, _info): Promise<Book[]> => {
+  const books = await getAllBooks();
+  return books;
+};
+
+const getAllBooksQuery: GraphQLFieldConfig<unknown, IApolloServerContext> = {
+  description: 'Get all books query',
+  type: GraphQLList(BookType),
+  resolve: getAllBooksQueryResolver,
 };
 
 export default getAllBooksQuery;
