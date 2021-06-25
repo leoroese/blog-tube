@@ -1,16 +1,21 @@
-import { GraphQLInputObjectType, GraphQLNonNull, GraphQLObjectType, GraphQLString } from 'graphql';
+import {
+  GraphQLInputObjectType,
+  GraphQLInt,
+  GraphQLNonNull,
+  GraphQLString,
+} from 'graphql';
 
-const CreateBookInput = new GraphQLInputObjectType({
+const CreateBookInput: GraphQLInputObjectType = new GraphQLInputObjectType({
   name: 'CreateBookInput',
   description: 'Create book input',
   fields: {
     title: {
       type: new GraphQLNonNull(GraphQLString),
-      description: 'An arbitrary integer.',
+      description: 'The books title.',
     },
-    author: {
-      type: new GraphQLNonNull(GraphQLObjectType()),
-      description: 'An arbitrary integer.',
+    authorId: {
+      type: new GraphQLNonNull(GraphQLInt),
+      description: 'The authors id.',
     },
   },
 });

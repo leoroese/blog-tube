@@ -1,11 +1,13 @@
-import { GraphQLObjectType } from 'graphql';
-import createBookMutation from '@src/graphql/schema/resolvers/mutation/createBookMutation';
+import { createBookMutationResolver } from '@src/graphql/schema/resolvers/mutation/createBookMutation';
+import { createAuthorMutationResolver } from './createAuthorMutation';
 
-const mutation = new GraphQLObjectType({
-  name: 'Mutation',
-  fields: {
-    createBook: createBookMutation,
+const mutation = {
+  createBook: {
+    resolve: createBookMutationResolver,
   },
-});
+  createAuthor: {
+    resolve: createAuthorMutationResolver,
+  },
+};
 
 export default mutation;
