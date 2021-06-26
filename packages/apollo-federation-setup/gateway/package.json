@@ -16,11 +16,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint:fix": "eslint --fix .",
-    "generate": "graphql-codegen --config codegen.yml",
-    "test:environment:docker": "yarn docker:up && yarn docker:test:run & yarn docker:down",
-    "docker:up": "docker-compose up -d --build",
-    "docker:down": "docker compose down",
-    "docker:test:run": "docker exec server ./bin/wait-for-it.sh db:5432 -- yarn test"
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.5",
@@ -41,6 +37,7 @@
     "jest-mock-extended": "^1.0.15",
     "nodemon": "^2.0.7",
     "prettier": "^2.2.1",
+    "prisma": "^2.24.1",
     "ts-jest": "^26.5.3",
     "ts-node": "^9.1.1",
     "tsconfig-paths": "^3.9.0",
@@ -52,7 +49,10 @@
     "@graphql-codegen/core": "^1.17.10",
     "@graphql-codegen/plugin-helpers": "^1.18.7",
     "@graphql-codegen/schema-ast": "^1.18.3",
+    "@prisma/client": "^2.24.1",
+    "apollo-graphql": "^0.9.3",
     "apollo-server": "^2.25.1",
+    "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
     "graphql": "^15.5.0"
   }

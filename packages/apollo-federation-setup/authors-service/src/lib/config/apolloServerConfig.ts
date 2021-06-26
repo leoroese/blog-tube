@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import apolloServerContext from '@src/lib/config/apolloServerContext';
 import schema from '@src/graphql/schema/schema';
 

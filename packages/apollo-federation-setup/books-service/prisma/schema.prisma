@@ -11,6 +11,7 @@ generator client {
 }
 
 model Book {
-  bookId Int    @id @default(autoincrement())
-  title  String
+  bookId   Int    @id @default(autoincrement())
+  title    String
+  authorId Int
 }

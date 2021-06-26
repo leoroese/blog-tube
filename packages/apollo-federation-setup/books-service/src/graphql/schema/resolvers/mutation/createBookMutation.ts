@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { GraphQLFieldConfig, GraphQLFieldResolver } from 'graphql';
+import { GraphQLFieldResolver } from 'graphql';
 import { Book } from '@prisma/client';
 import { IApolloServerContext } from '@src/lib/interfaces/IApolloServerContext';
 import { createBook } from '@src/data/bookService';

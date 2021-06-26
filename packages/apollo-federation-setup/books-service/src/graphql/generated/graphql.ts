@@ -23,7 +23,7 @@ export type Scalars = {
 export type Author = {
   __typename?: 'Author';
   authorId: Scalars['ID'];
-  username?: Maybe<Scalars['String']>;
+  books?: Maybe<Array<Maybe<Book>>>;
 };
 
 export type Book = {
@@ -31,7 +31,6 @@ export type Book = {
   bookId: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   author?: Maybe<Author>;
-  authorId: Scalars['ID'];
 };
 
 export type CreateBookInput = {
@@ -157,8 +156,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = ResolversObject<{
   Author: ResolverTypeWrapper<Author>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
-  String: ResolverTypeWrapper<Scalars['String']>;
   Book: ResolverTypeWrapper<Book>;
+  String: ResolverTypeWrapper<Scalars['String']>;
   CreateBookInput: CreateBookInput;
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
@@ -173,8 +172,8 @@ export type ResolversTypes = ResolversObject<{
 export type ResolversParentTypes = ResolversObject<{
   Author: Author;
   ID: Scalars['ID'];
-  String: Scalars['String'];
   Book: Book;
+  String: Scalars['String'];
   CreateBookInput: CreateBookInput;
   Int: Scalars['Int'];
   Mutation: {};
@@ -189,25 +188,9 @@ export type ExtendsDirectiveArgs = {  };
 
 export type ExtendsDirectiveResolver<Result, Parent, ContextType = IPrismaContext, Args = ExtendsDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
 
-export type ExternalDirectiveArgs = {  };
-
-export type ExternalDirectiveResolver<Result, Parent, ContextType = IPrismaContext, Args = ExternalDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type KeyDirectiveArgs = {   fields: Scalars['String']; };
-
-export type KeyDirectiveResolver<Result, Parent, ContextType = IPrismaContext, Args = KeyDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type ProvidesDirectiveArgs = {   fields: Scalars['String']; };
-
-export type ProvidesDirectiveResolver<Result, Parent, ContextType = IPrismaContext, Args = ProvidesDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
-export type RequiresDirectiveArgs = {   fields: Scalars['String']; };
-
-export type RequiresDirectiveResolver<Result, Parent, ContextType = IPrismaContext, Args = RequiresDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
-
 export type AuthorResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = ResolversObject<{
   authorId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  username?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -215,7 +198,6 @@ export type BookResolvers<ContextType = IPrismaContext, ParentType extends Resol
   bookId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>;
-  authorId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -261,10 +243,6 @@ export type Resolvers<ContextType = IPrismaContext> = ResolversObject<{
 export type IResolvers<ContextType = IPrismaContext> = Resolvers<ContextType>;
 export type DirectiveResolvers<ContextType = IPrismaContext> = ResolversObject<{
   extends?: ExtendsDirectiveResolver<any, any, ContextType>;
-  external?: ExternalDirectiveResolver<any, any, ContextType>;
-  key?: KeyDirectiveResolver<any, any, ContextType>;
-  provides?: ProvidesDirectiveResolver<any, any, ContextType>;
-  requires?: RequiresDirectiveResolver<any, any, ContextType>;
 }>;
 
 

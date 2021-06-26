@@ -60,7 +60,6 @@
     "apollo-server": "^2.25.1",
     "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
-    "graphql": "^15.5.0",
-    "node-fetch": "^2.6.1"
+    "graphql": "^15.5.0"
   }
 }

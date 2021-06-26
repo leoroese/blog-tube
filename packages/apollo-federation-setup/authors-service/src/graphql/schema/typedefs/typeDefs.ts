@@ -4,9 +4,6 @@ const typeDefs = gql`
   extend type Query {
     # get all authors
     authors: [Author]
-
-    # get author by id
-    author(authorId: Int!): Author
   }
 
   extend type Mutation {

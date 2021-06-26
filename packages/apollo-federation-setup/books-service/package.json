@@ -19,11 +19,7 @@
     "generate": "graphql-codegen --config codegen.yml",
     "generate:migration": "npx prisma migrate dev",
     "generate:reset": "npx prisma migrate reset --force",
-    "prisma:studio": "npx prisma studio",
-    "test:environment:docker": "yarn docker:up && yarn docker:test:run & yarn docker:down",
-    "docker:up": "docker-compose up -d --build",
-    "docker:down": "docker compose down",
-    "docker:test:run": "docker exec server ./bin/wait-for-it.sh db:5432 -- yarn test"
+    "prisma:studio": "npx prisma studio"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "1.21.5",
@@ -60,7 +56,6 @@
     "apollo-server": "^2.25.1",
     "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
-    "graphql": "^15.5.0",
-    "node-fetch": "^2.6.1"
+    "graphql": "^15.5.0"
   }
 }

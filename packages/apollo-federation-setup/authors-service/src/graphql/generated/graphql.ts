@@ -1,4 +1,4 @@
-import { GraphQLResolveInfo } from 'graphql';
+import { GraphQLResolveInfo, GraphQLScalarType, GraphQLScalarTypeConfig } from 'graphql';
 import { IPrismaContext } from 'src/lib/interfaces/IPrismaContext';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,8 +12,9 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  _FieldSet: any;
+  _Any: any;
 };
+
 
 
 
@@ -22,31 +23,16 @@ export type Scalars = {
 export type Author = {
   __typename?: 'Author';
   authorId: Scalars['ID'];
-  books?: Maybe<Array<Maybe<Book>>>;
   username?: Maybe<Scalars['String']>;
-};
-
-export type Book = {
-  __typename?: 'Book';
-  author?: Maybe<Author>;
-  authorId: Scalars['ID'];
-  bookId: Scalars['ID'];
-  title?: Maybe<Scalars['String']>;
 };
 
 export type CreateAuthorInput = {
   username: Scalars['String'];
 };
 
-export type CreateBookInput = {
-  authorId?: Maybe<Scalars['Int']>;
-  title?: Maybe<Scalars['String']>;
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   createAuthor: Author;
-  createBook: Book;
 };
 
 
@@ -54,29 +40,26 @@ export type MutationCreateAuthorArgs = {
   input?: Maybe<CreateAuthorInput>;
 };
 
-
-export type MutationCreateBookArgs = {
-  input: CreateBookInput;
-};
-
 export type Query = {
   __typename?: 'Query';
-  author?: Maybe<Author>;
+  _entities: Array<Maybe<_Entity>>;
+  _service: _Service;
   authors?: Maybe<Array<Maybe<Author>>>;
-  books?: Maybe<Array<Maybe<Book>>>;
-  booksByAuthor?: Maybe<Array<Maybe<Book>>>;
 };
 
 
-export type QueryAuthorArgs = {
-  authorId: Scalars['Int'];
+export type Query_EntitiesArgs = {
+  representations: Array<Scalars['_Any']>;
 };
 
 
-export type QueryBooksByAuthorArgs = {
-  authorId?: Maybe<Scalars['Int']>;
-};
+export type _Entity = Author;
 
+export type _Service = {
+  __typename?: '_Service';
+  /** The sdl representing the federated service capabilities. Includes federation directives, removes federation types, and includes rest of full schema after schema directives have been applied */
+  sdl?: Maybe<Scalars['String']>;
+};
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
@@ -160,12 +143,12 @@ export type ResolversTypes = ResolversObject<{
   Author: ResolverTypeWrapper<Author>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  Book: ResolverTypeWrapper<Book>;
   CreateAuthorInput: CreateAuthorInput;
-  CreateBookInput: CreateBookInput;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  _Any: ResolverTypeWrapper<Scalars['_Any']>;
+  _Entity: ResolversTypes['Author'];
+  _Service: ResolverTypeWrapper<_Service>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
@@ -174,47 +157,55 @@ export type ResolversParentTypes = ResolversObject<{
   Author: Author;
   ID: Scalars['ID'];
   String: Scalars['String'];
-  Book: Book;
   CreateAuthorInput: CreateAuthorInput;
-  CreateBookInput: CreateBookInput;
-  Int: Scalars['Int'];
   Mutation: {};
   Query: {};
+  _Any: Scalars['_Any'];
+  _Entity: ResolversParentTypes['Author'];
+  _Service: _Service;
   Boolean: Scalars['Boolean'];
 }>;
 
+export type ExtendsDirectiveArgs = {  };
+
+export type ExtendsDirectiveResolver<Result, Parent, ContextType = IPrismaContext, Args = ExtendsDirectiveArgs> = DirectiveResolverFn<Result, Parent, ContextType, Args>;
+
 export type AuthorResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Author'] = ResolversParentTypes['Author']> = ResolversObject<{
   authorId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
   username?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
-  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-}>;
-
-export type BookResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Book'] = ResolversParentTypes['Book']> = ResolversObject<{
-  author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType>;
-  authorId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  bookId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  title?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type MutationResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
   createAuthor?: Resolver<ResolversTypes['Author'], ParentType, ContextType, RequireFields<MutationCreateAuthorArgs, never>>;
-  createBook?: Resolver<ResolversTypes['Book'], ParentType, ContextType, RequireFields<MutationCreateBookArgs, 'input'>>;
 }>;
 
 export type QueryResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  author?: Resolver<Maybe<ResolversTypes['Author']>, ParentType, ContextType, RequireFields<QueryAuthorArgs, 'authorId'>>;
+  _entities?: Resolver<Array<Maybe<ResolversTypes['_Entity']>>, ParentType, ContextType, RequireFields<Query_EntitiesArgs, 'representations'>>;
+  _service?: Resolver<ResolversTypes['_Service'], ParentType, ContextType>;
   authors?: Resolver<Maybe<Array<Maybe<ResolversTypes['Author']>>>, ParentType, ContextType>;
-  books?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType>;
-  booksByAuthor?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType, RequireFields<QueryBooksByAuthorArgs, never>>;
+}>;
+
+export interface _AnyScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['_Any'], any> {
+  name: '_Any';
+}
+
+export type _EntityResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['_Entity'] = ResolversParentTypes['_Entity']> = ResolversObject<{
+  __resolveType: TypeResolveFn<'Author', ParentType, ContextType>;
+}>;
+
+export type _ServiceResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['_Service'] = ResolversParentTypes['_Service']> = ResolversObject<{
+  sdl?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = IPrismaContext> = ResolversObject<{
   Author?: AuthorResolvers<ContextType>;
-  Book?: BookResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  _Any?: GraphQLScalarType;
+  _Entity?: _EntityResolvers<ContextType>;
+  _Service?: _ServiceResolvers<ContextType>;
 }>;
 
 
@@ -223,3 +214,13 @@ export type Resolvers<ContextType = IPrismaContext> = ResolversObject<{
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
 export type IResolvers<ContextType = IPrismaContext> = Resolvers<ContextType>;
+export type DirectiveResolvers<ContextType = IPrismaContext> = ResolversObject<{
+  extends?: ExtendsDirectiveResolver<any, any, ContextType>;
+}>;
+
+
+/**
+ * @deprecated
+ * Use "DirectiveResolvers" root object instead. If you wish to get "IDirectiveResolvers", add "typesPrefix: I" to your config.
+ */
+export type IDirectiveResolvers<ContextType = IPrismaContext> = DirectiveResolvers<ContextType>;

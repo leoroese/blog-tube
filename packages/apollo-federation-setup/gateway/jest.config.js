@@ -16,5 +16,9 @@ module.exports = {
     '@src/(.*)': '<rootDir>/src/$1',
   },
   moduleDirectories: ['src', 'node_modules'],
-  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/', '<rootDir>/src/__tests__/__mocks__/'],
+  testPathIgnorePatterns: [
+    '<rootDir>/dist/',
+    '<rootDir>/node_modules/',
+    '<rootDir>/src/__tests__/__mocks__/',
+  ],
 };
