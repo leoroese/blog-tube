@@ -1,0 +1,9 @@
+subgraphs:
+  books:
+    routing_url: http://localhost:4001/graphql
+    schema:
+      file: ./books.graphql
+  authors:
+    routing_url: http://localhost:4002/graphql
+    schema:
+      file: ./authors.graphql

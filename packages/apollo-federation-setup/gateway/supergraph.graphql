@@ -1,0 +1,63 @@
+schema
+  @core(feature: "https://specs.apollo.dev/core/v0.1"),
+  @core(feature: "https://specs.apollo.dev/join/v0.1")
+{
+  query: Query
+  mutation: Mutation
+}
+
+directive @core(feature: String!) repeatable on SCHEMA
+
+directive @join__field(graph: join__Graph, requires: join__FieldSet, provides: join__FieldSet) on FIELD_DEFINITION
+
+directive @join__type(graph: join__Graph!, key: join__FieldSet) repeatable on OBJECT | INTERFACE
+
+directive @join__owner(graph: join__Graph!) on OBJECT | INTERFACE
+
+directive @join__graph(name: String!, url: String!) on ENUM_VALUE
+
+type Author
+  @join__owner(graph: AUTHORS)
+  @join__type(graph: AUTHORS, key: "authorId")
+  @join__type(graph: BOOKS, key: "authorId")
+{
+  authorId: ID! @join__field(graph: AUTHORS)
+  username: String @join__field(graph: AUTHORS)
+  books: [Book] @join__field(graph: BOOKS)
+}
+
+type Book
+  @join__owner(graph: BOOKS)
+  @join__type(graph: BOOKS, key: "bookId")
+{
+  bookId: ID! @join__field(graph: BOOKS)
+  title: String @join__field(graph: BOOKS)
+  author: Author @join__field(graph: BOOKS)
+}
+
+input CreateAuthorInput {
+  username: String!
+}
+
+input CreateBookInput {
+  title: String
+  authorId: Int
+}
+
+scalar join__FieldSet
+
+enum join__Graph {
+  AUTHORS @join__graph(name: "authors" url: "http://localhost:4002/graphql")
+  BOOKS @join__graph(name: "books" url: "http://localhost:4001/graphql")
+}
+
+type Mutation {
+  createAuthor(input: CreateAuthorInput): Author! @join__field(graph: AUTHORS)
+  createBook(input: CreateBookInput!): Book! @join__field(graph: BOOKS)
+}
+
+type Query {
+  authors: [Author] @join__field(graph: AUTHORS)
+  books: [Book] @join__field(graph: BOOKS)
+  booksByAuthor(authorId: Int): [Book] @join__field(graph: BOOKS)
+}

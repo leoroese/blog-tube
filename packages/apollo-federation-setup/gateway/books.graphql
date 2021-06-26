@@ -22,7 +22,3 @@ extend type Query {
   books: [Book]
   booksByAuthor(authorId: Int): [Book]
 }
-
-type Test {
-  testId: ID!
-}

@@ -16,7 +16,7 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "lint:fix": "eslint --fix .",
-    "generate": "graphql-codegen --config codegen.yml",
+    "generate": "graphql-codegen --config codegen.yml && rover subgraph introspect http://localhost:4001/graphql > ./src/graphql/generated/schema.graphql",
     "generate:migration": "npx prisma migrate dev",
     "generate:reset": "npx prisma migrate reset --force",
     "prisma:studio": "npx prisma studio"
@@ -50,7 +50,6 @@
     "@apollo/federation": "^0.25.2",
     "@graphql-codegen/core": "^1.17.10",
     "@graphql-codegen/plugin-helpers": "^1.18.7",
-    "@graphql-codegen/schema-ast": "^1.18.3",
     "@prisma/client": "^2.24.1",
     "apollo-graphql": "^0.9.3",
     "apollo-server": "^2.25.1",

@@ -25,6 +25,10 @@ const typeDefs = gql`
     author: Author
   }
 
+  type Test {
+    testId: ID!
+  }
+
   extend type Author @key(fields: "authorId") {
     # the author id
     authorId: ID! @external

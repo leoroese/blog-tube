@@ -66,6 +66,11 @@ export type QueryBooksByAuthorArgs = {
   authorId?: Maybe<Scalars['Int']>;
 };
 
+export type Test = {
+  __typename?: 'Test';
+  testId: Scalars['ID'];
+};
+
 
 export type _Entity = Book | Author;
 
@@ -162,6 +167,7 @@ export type ResolversTypes = ResolversObject<{
   Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
+  Test: ResolverTypeWrapper<Test>;
   _Any: ResolverTypeWrapper<Scalars['_Any']>;
   _Entity: ResolversTypes['Book'] | ResolversTypes['Author'];
   _Service: ResolverTypeWrapper<_Service>;
@@ -178,6 +184,7 @@ export type ResolversParentTypes = ResolversObject<{
   Int: Scalars['Int'];
   Mutation: {};
   Query: {};
+  Test: Test;
   _Any: Scalars['_Any'];
   _Entity: ResolversParentTypes['Book'] | ResolversParentTypes['Author'];
   _Service: _Service;
@@ -212,6 +219,11 @@ export type QueryResolvers<ContextType = IPrismaContext, ParentType extends Reso
   booksByAuthor?: Resolver<Maybe<Array<Maybe<ResolversTypes['Book']>>>, ParentType, ContextType, RequireFields<QueryBooksByAuthorArgs, never>>;
 }>;
 
+export type TestResolvers<ContextType = IPrismaContext, ParentType extends ResolversParentTypes['Test'] = ResolversParentTypes['Test']> = ResolversObject<{
+  testId?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export interface _AnyScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes['_Any'], any> {
   name: '_Any';
 }
@@ -230,6 +242,7 @@ export type Resolvers<ContextType = IPrismaContext> = ResolversObject<{
   Book?: BookResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Test?: TestResolvers<ContextType>;
   _Any?: GraphQLScalarType;
   _Entity?: _EntityResolvers<ContextType>;
   _Service?: _ServiceResolvers<ContextType>;

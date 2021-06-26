@@ -5,18 +5,24 @@ import dotenv from 'dotenv-safe';
 dotenv.config();
 
 const startServer = () => {
-  const gateway = new ApolloGateway({
-    serviceList: [
-      {
-        name: 'books',
-        url: process.env.BOOKS_SERVICE_URL,
-      },
-      {
-        name: 'authors',
-        url: process.env.AUTHORS_SERVICE_URL,
-      },
-    ],
-  });
+  let gateway: ApolloGateway;
+  if (process.env.NODE_ENV === 'development') {
+    gateway = new ApolloGateway({
+      // supergraphSdl: supergraphSchema,
+      serviceList: [
+        {
+          name: 'books',
+          url: process.env.BOOKS_SERVICE_URL,
+        },
+        {
+          name: 'authors',
+          url: process.env.AUTHORS_SERVICE_URL,
+        },
+      ],
+    });
+  } else {
+    gateway = new ApolloGateway();
+  }
 
   const server = new ApolloServer({
     gateway,
