@@ -5,7 +5,7 @@ import { useQuery, UseQueryResult } from 'react-query';
 import { IPerson } from '@src/lib/interfaces/IPerson';
 
 const fetchPerson = async (): Promise<IPerson> => {
-  const res = await fetch(`/api/perso`);
+  const res = await fetch(`/api/person`);
   // need to do this with fetch since doesn't automatically throw errors axios and graphql-request do
   if (res.ok) {
     return res.json();
@@ -17,7 +17,21 @@ const PersonPage: FC = () => {
   const { isLoading, isError, error, data }: UseQueryResult<IPerson, Error> = useQuery<IPerson, Error>(
     'person',
     fetchPerson
+    // {
+    //   staleTime: 5 * 1000, // 5 seconds
+    // }
   );
+
+  //   const { status, error, data }: UseQueryResult<string, Error> = useQuery<IPerson, Error, string>(
+  //     'person',
+  //     async () => {
+  //       const res = await fetch('/api/person');
+  //       return res.json();
+  //     },
+  //     {
+  //       select: (person) => person.name,
+  //     }
+  //   );
 
   if (isLoading) {
     return (
