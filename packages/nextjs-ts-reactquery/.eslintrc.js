@@ -31,9 +31,9 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'import/extensions': 'off',
     'import/no-unresolved': 'error',
-	"no-use-before-define": "off",
-	"jsx-a11y/anchor-is-valid": 'off',
-	"@typescript-eslint/no-use-before-define": ["error"],
+    'no-use-before-define': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
     'import/order': [
       'error',
       {
