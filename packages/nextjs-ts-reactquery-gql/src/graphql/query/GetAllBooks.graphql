@@ -1,0 +1,10 @@
+query GetAllBooks {
+  books {
+    bookId
+    title
+    author {
+      authorId
+      username
+    }
+  }
+}
