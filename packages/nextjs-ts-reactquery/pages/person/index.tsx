@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useQuery, UseQueryResult } from 'react-query';
 import { IPerson } from '@src/lib/interfaces/IPerson';
 
-const fetchPerson = async (): Promise<IPerson> => {
+export const fetchPerson = async (): Promise<IPerson> => {
   const res = await fetch(`/api/person`);
   // need to do this with fetch since doesn't automatically throw errors axios and graphql-request do
   if (res.ok) {
