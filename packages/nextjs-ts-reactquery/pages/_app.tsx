@@ -10,7 +10,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 const reactQueryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 5000,
+      staleTime: 5 * 1000,
     },
   },
 });

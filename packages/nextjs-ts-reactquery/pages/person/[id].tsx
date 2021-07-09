@@ -8,9 +8,12 @@ import { IPerson } from '@src/lib/interfaces/IPerson';
 const getPersonById = async (id: string | string[] | undefined): Promise<IPerson> => {
   if (typeof id === 'string') {
     const res = await fetch(`/api/person/${id}`);
-    return res.json();
+    if (res.ok) {
+      return res.json();
+    }
+    throw new Error('error fetching user with id');
   }
-  throw new Error('invalid id');
+  throw new Error('invalid id'); // need to throw because react-query functions need to have error thrown to know its in error state
 };
 
 const PersonPage: FC = () => {
@@ -18,24 +21,15 @@ const PersonPage: FC = () => {
     query: { id },
   } = useRouter();
 
-  // example of dependent query
   const { isLoading, isError, error, data } = useQuery<IPerson, Error>(['person', id], () => getPersonById(id), {
-    enabled: !!id, // enabled will stop a query from running, so will only call when id is available (dependent query)
+    enabled: !!id, // enabled will stop a query from running, so will only call when id is available (dependent queries)
   });
 
-  /* 
-    parallel queries can be run async side by side
-      const usersQuery = useQuery('users', fetchUsers)
-      const teamsQuery = useQuery('teams', fetchTeams)
-
-    Cached key would be ['person', ]
-    useQuery(['todos', { status, page }], ...) => will be cached as useQuery(['todos', status, page], ...)
-    ['todos', { page, status, other: undefined}] -> will be cached as ['todos', { undefined, page, status}]
-    const name = 'Tl';
-    const { isLoading, isError, error, data } = useQuery<IPerson, Error>(['person', id, name], () => getPersonById(id, name), {
-        enabled: !!id,
-    }); 
-  */
+  // Cached key would be ['person', ]
+  // const name = 'Tlw';
+  // const { isLoading, isError, error, data } = useQuery<IPerson, Error>(['person', id, name], () => getPersonById(id, name), {
+  //   enabled: Boolean(id), // enabled will stop a query from running, so will only call when id is available
+  // });
 
   if (isLoading) {
     return (

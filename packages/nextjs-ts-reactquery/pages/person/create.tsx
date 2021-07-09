@@ -5,6 +5,7 @@
 import React, { FC, FormEventHandler, useState } from 'react';
 import { useMutation, UseMutationResult, useQuery, useQueryClient, UseQueryResult } from 'react-query';
 import { IPerson } from '@src/lib/interfaces/IPerson';
+import { ITodo } from '@src/lib/interfaces/ITodo';
 import { fetchPerson } from './index';
 
 /* React 17 and newer can try something like this
@@ -47,6 +48,15 @@ const createPerson = async (id: string, name: string, age: number): Promise<IPer
   throw new Error('Error create person');
 };
 
+const fetchTodo = async (): Promise<ITodo> => {
+  const res = await fetch(`/api/todo`);
+  // need to do this with fetch since doesn't automatically throw errors axios and graphql-request do
+  if (res.ok) {
+    return res.json();
+  }
+  throw new Error('Network response not ok'); // need to throw because react-query functions need to have error thrown to know its in error state
+};
+
 interface ICreatePersonParams {
   id: string;
   name: string;
@@ -54,11 +64,14 @@ interface ICreatePersonParams {
 }
 
 interface IContext {
-  id: string;
+  previousPerson: IPerson | undefined;
 }
 
 const CreatePage: FC = () => {
-  const { data: queryData }: UseQueryResult<IPerson, Error> = useQuery<IPerson, Error>('person', fetchPerson);
+  const [enabled, setEnabled] = useState(false);
+  const { data: queryData }: UseQueryResult<IPerson, Error> = useQuery<IPerson, Error>('person', fetchPerson, {
+    enabled,
+  });
 
   const queryClient = useQueryClient();
 
@@ -67,21 +80,38 @@ const CreatePage: FC = () => {
     Error,
     ICreatePersonParams,
     IContext | undefined
-  >('createPerson', async ({ id, name, age }) => createPerson(id, name, age), {
+  >(async ({ id, name, age }) => createPerson(id, name, age), {
     // before mutation
-    onMutate: (variables: ICreatePersonParams) => {
-      console.log('mutation variables', variables);
-      return { id: '7' };
+    onMutate: async (_variables: ICreatePersonParams) => {
+      // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+      await queryClient.cancelQueries('person');
+
+      // Snapshot the previous value
+      const previousPerson: IPerson | undefined = queryClient.getQueryData('person');
+
+      const newPerson: IPerson = {
+        id: '123',
+        age: 200,
+        name: 'Lebron James',
+      };
+
+      // optimistically update
+      queryClient.setQueryData('person', newPerson);
+
+      // Return a context object with the snapshotted value
+      return { previousPerson };
     },
     // on success of mutation
     onSuccess: (data: IPerson, _variables: ICreatePersonParams, _context: IContext | undefined) => {
-      queryClient.setQueryData('person', data);
+      queryClient.invalidateQueries('person');
+      //   queryClient.setQueryData('person', data);
       return console.log('mutation data', data);
     },
     // if mutation errors
     onError: (error: Error, _variables: ICreatePersonParams, context: IContext | undefined) => {
       console.log('error: ', error.message);
-      return console.log(`rolling back optimistic update with id: ${context?.id}`);
+      queryClient.setQueryData('person', context?.previousPerson);
+      return console.log(`rolling back optimistic update with id: ${context?.previousPerson?.id}`);
     },
     // no matter if error or success run me
     onSettled: (
@@ -125,6 +155,7 @@ const CreatePage: FC = () => {
       <button
         type="button"
         onClick={() => {
+          setEnabled(!enabled);
           queryClient.invalidateQueries('person');
         }}
       >
