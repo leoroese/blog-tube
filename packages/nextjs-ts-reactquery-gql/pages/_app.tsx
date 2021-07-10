@@ -2,16 +2,24 @@
 // _app.tsx
 import '@styles/globals.css';
 
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { AppProps } from 'next/app';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 1000,
+    },
+  },
+});
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <Component {...pageProps} />;
+      <ReactQueryDevtools initialIsOpen={false} />
+      <Component {...pageProps} />
     </QueryClientProvider>
   );
 };

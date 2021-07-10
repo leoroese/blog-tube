@@ -1,0 +1,6 @@
+query GetBooksByAuthor($authorId: Int) {
+  booksByAuthor(authorId: $authorId) {
+    bookId
+    title
+  }
+}

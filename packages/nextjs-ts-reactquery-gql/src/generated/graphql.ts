@@ -1,6 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
-import { useQuery, UseQueryOptions } from 'react-query';
-
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from 'react-query';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
@@ -47,9 +46,11 @@ export type Mutation = {
   createBook: Book;
 };
 
+
 export type MutationCreateAuthorArgs = {
   input?: Maybe<CreateAuthorInput>;
 };
+
 
 export type MutationCreateBookArgs = {
   input: CreateBookInput;
@@ -62,6 +63,7 @@ export type Query = {
   booksByAuthor?: Maybe<Array<Maybe<Book>>>;
 };
 
+
 export type QueryBooksByAuthorArgs = {
   authorId?: Maybe<Scalars['Int']>;
 };
@@ -71,20 +73,99 @@ export type Test = {
   testId: Scalars['ID'];
 };
 
-export type GetAllBooksQueryVariables = Exact<{ [key: string]: never }>;
+export type CreateAuthorMutationVariables = Exact<{
+  input?: Maybe<CreateAuthorInput>;
+}>;
 
-export type GetAllBooksQuery = { __typename?: 'Query' } & {
-  books?: Maybe<
-    Array<
-      Maybe<
-        { __typename?: 'Book' } & Pick<Book, 'bookId' | 'title'> & {
-            author?: Maybe<{ __typename?: 'Author' } & Pick<Author, 'authorId' | 'username'>>;
-          }
-      >
-    >
-  >;
-};
 
+export type CreateAuthorMutation = (
+  { __typename?: 'Mutation' }
+  & { createAuthor: (
+    { __typename?: 'Author' }
+    & Pick<Author, 'authorId' | 'username'>
+  ) }
+);
+
+export type GetAllAuthorsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllAuthorsQuery = (
+  { __typename?: 'Query' }
+  & { authors?: Maybe<Array<Maybe<(
+    { __typename?: 'Author' }
+    & Pick<Author, 'authorId' | 'username'>
+  )>>> }
+);
+
+export type GetAllBooksQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllBooksQuery = (
+  { __typename?: 'Query' }
+  & { books?: Maybe<Array<Maybe<(
+    { __typename?: 'Book' }
+    & Pick<Book, 'bookId' | 'title'>
+    & { author?: Maybe<(
+      { __typename?: 'Author' }
+      & Pick<Author, 'authorId' | 'username'>
+    )> }
+  )>>> }
+);
+
+export type GetBooksByAuthorQueryVariables = Exact<{
+  authorId?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type GetBooksByAuthorQuery = (
+  { __typename?: 'Query' }
+  & { booksByAuthor?: Maybe<Array<Maybe<(
+    { __typename?: 'Book' }
+    & Pick<Book, 'bookId' | 'title'>
+  )>>> }
+);
+
+
+export const CreateAuthorDocument = `
+    mutation CreateAuthor($input: CreateAuthorInput) {
+  createAuthor(input: $input) {
+    authorId
+    username
+  }
+}
+    `;
+export const useCreateAuthorMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient, 
+      options?: UseMutationOptions<CreateAuthorMutation, TError, CreateAuthorMutationVariables, TContext>
+    ) => 
+    useMutation<CreateAuthorMutation, TError, CreateAuthorMutationVariables, TContext>(
+      (variables?: CreateAuthorMutationVariables) => fetcher<CreateAuthorMutation, CreateAuthorMutationVariables>(client, CreateAuthorDocument, variables)(),
+      options
+    );
+export const GetAllAuthorsDocument = `
+    query GetAllAuthors {
+  authors {
+    authorId
+    username
+  }
+}
+    `;
+export const useGetAllAuthorsQuery = <
+      TData = GetAllAuthorsQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient, 
+      variables?: GetAllAuthorsQueryVariables, 
+      options?: UseQueryOptions<GetAllAuthorsQuery, TError, TData>
+    ) => 
+    useQuery<GetAllAuthorsQuery, TError, TData>(
+      ['GetAllAuthors', variables],
+      fetcher<GetAllAuthorsQuery, GetAllAuthorsQueryVariables>(client, GetAllAuthorsDocument, variables),
+      options
+    );
 export const GetAllBooksDocument = `
     query GetAllBooks {
   books {
@@ -97,13 +178,37 @@ export const GetAllBooksDocument = `
   }
 }
     `;
-export const useGetAllBooksQuery = <TData = GetAllBooksQuery, TError = unknown>(
-  client: GraphQLClient,
-  variables?: GetAllBooksQueryVariables,
-  options?: UseQueryOptions<GetAllBooksQuery, TError, TData>
-) =>
-  useQuery<GetAllBooksQuery, TError, TData>(
-    ['GetAllBooks', variables],
-    fetcher<GetAllBooksQuery, GetAllBooksQueryVariables>(client, GetAllBooksDocument, variables),
-    options
-  );
+export const useGetAllBooksQuery = <
+      TData = GetAllBooksQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient, 
+      variables?: GetAllBooksQueryVariables, 
+      options?: UseQueryOptions<GetAllBooksQuery, TError, TData>
+    ) => 
+    useQuery<GetAllBooksQuery, TError, TData>(
+      ['GetAllBooks', variables],
+      fetcher<GetAllBooksQuery, GetAllBooksQueryVariables>(client, GetAllBooksDocument, variables),
+      options
+    );
+export const GetBooksByAuthorDocument = `
+    query GetBooksByAuthor($authorId: Int) {
+  booksByAuthor(authorId: $authorId) {
+    bookId
+    title
+  }
+}
+    `;
+export const useGetBooksByAuthorQuery = <
+      TData = GetBooksByAuthorQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient, 
+      variables?: GetBooksByAuthorQueryVariables, 
+      options?: UseQueryOptions<GetBooksByAuthorQuery, TError, TData>
+    ) => 
+    useQuery<GetBooksByAuthorQuery, TError, TData>(
+      ['GetBooksByAuthor', variables],
+      fetcher<GetBooksByAuthorQuery, GetBooksByAuthorQueryVariables>(client, GetBooksByAuthorDocument, variables),
+      options
+    );
