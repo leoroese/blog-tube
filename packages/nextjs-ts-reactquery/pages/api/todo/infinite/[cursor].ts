@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { IInfinitePage } from '@src/lib/interfaces/IInfinitePage';
 import { ITodo } from '@src/lib/interfaces/ITodo';
 
 export default (
