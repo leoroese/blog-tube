@@ -1,9 +1,39 @@
+/* eslint-disable react/jsx-props-no-spreading */
 // index.tsx
-import { FC } from 'react';
+import React, { FC } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { TextField } from '@material-ui/core';
 import Head from 'next/head';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import * as yup from 'yup';
 import styles from '../styles/Home.module.css';
 
+interface IFormInputs {
+  email: string;
+  password: string;
+}
+
+const schema = yup.object().shape({
+  email: yup.string().email(),
+  password: yup.string().min(4).max(20).required(),
+});
+
 const Home: FC = () => {
+  const {
+    register,
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<IFormInputs>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit: SubmitHandler<IFormInputs> = (data) => console.log('data submitted: ', data);
+
+  console.log(watch('email'));
+  console.log('errors are', errors);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -19,31 +49,43 @@ const Home: FC = () => {
         <p className={styles.description}>
           Get started by editing <code className={styles.code}>pages/index.js</code>
         </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a href="https://github.com/vercel/next.js/tree/master/examples" className={styles.card}>
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-        </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Controller
+            name="email"
+            control={control}
+            defaultValue="example@dev.com"
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Email"
+                variant="outlined"
+                error={!!errors.email}
+                helperText={errors.email ? errors.email?.message : ''}
+                fullWidth
+                margin="dense"
+              />
+            )}
+          />
+          <br />
+          <Controller
+            name="password"
+            control={control}
+            defaultValue=""
+            render={({ field }) => (
+              <TextField
+                {...field}
+                type="password"
+                label="Password"
+                variant="outlined"
+                error={!!errors.password}
+                helperText={errors.password ? errors.password?.message : ''}
+                fullWidth
+                margin="dense"
+              />
+            )}
+          />
+          <input type="submit" />
+        </form>
       </main>
 
       <footer className={styles.footer}>
