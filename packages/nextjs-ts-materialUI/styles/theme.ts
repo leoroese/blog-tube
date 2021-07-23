@@ -1,9 +1,9 @@
 // styles/theme.ts
 
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 // Create a theme instance.
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     common: {
       black: '#19192B',
