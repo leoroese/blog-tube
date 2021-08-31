@@ -8,7 +8,6 @@
         "airbnb-base",
         "airbnb-typescript/base",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:eslint-comments/recommended",
         "plugin:jest/recommended",
         "plugin:promise/recommended",
@@ -32,13 +31,22 @@
         "import/no-default-export": "error",
         "no-use-before-define": [
             "error",
-            { "functions": false, "classes": true, "variables": true }
-            ],
+            {
+                "functions": false,
+                "classes": true,
+                "variables": true
+            }
+        ],
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-use-before-define": [
             "error",
-            { "functions": false, "classes": true, "variables": true, "typedefs": true }
-            ],
+            {
+                "functions": false,
+                "classes": true,
+                "variables": true,
+                "typedefs": true
+            }
+        ],
         "import/no-extraneous-dependencies": "off"
     },
     "settings": {
