@@ -1,8 +1,8 @@
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  coverageDirectory: 'coverage',
-  collectCoverageFrom: ['src/**/*.{js,ts}'],
+  collectCoverageFrom: ['src/**/*.ts'],
   coverageThreshold: {
     global: {
       branches: 0,
@@ -15,5 +15,4 @@ module.exports = {
     'src/(.*)': '<rootDir>/src/$1',
   },
   moduleDirectories: ['node_modules', 'src'],
-  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],
 };

@@ -1,40 +1,44 @@
 {
-  "name": "node-ts-backend",
+  "name": "node-typescript-backend",
   "version": "1.0.0",
-  "description": "Node.js and typescript backend setup project for blog-tube",
-  "main": "index.js",
-  "repository": "https://github.com/leoroese/blog-tube",
-  "author": "Leonardo Roese",
-  "license": "MIT",
+  "description": "Backend Node.js with Typescript",
+  "main": "index.ts",
   "scripts": {
-    "dev": "nodemon",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/src/index.js",
-    "build": "tsc -p tsconfig.prod.json",
+    "dev": "nodemon src/index.ts",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:unit": "jest unit",
+    "test:int": "jest int",
     "test:coverage": "jest --coverage"
   },
+  "keywords": [
+    "Typescript",
+    "Node"
+  ],
+  "author": "Leonardo Roese",
+  "license": "MIT",
   "devDependencies": {
-    "@types/dotenv-safe": "^8.1.2",
-    "@types/jest": "^26.0.24",
-    "@types/node": "^16.4.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.4",
-    "@typescript-eslint/parser": "^4.28.4",
-    "eslint": "^7.31.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.9",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.4.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^27.0.6",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jest": "^24.4.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.1.0",
     "nodemon": "^2.0.12",
     "prettier": "^2.3.2",
-    "ts-jest": "^27.0.4",
-    "ts-node": "^10.1.0",
-    "tsconfig-paths": "^3.10.1",
-    "typescript": "^4.3.5"
+    "ts-jest": "^27.0.5",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
   },
   "dependencies": {
-    "dotenv-safe": "^8.2.0"
+    "dotenv": "^10.0.0"
   }
 }
