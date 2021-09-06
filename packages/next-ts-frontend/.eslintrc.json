@@ -34,6 +34,7 @@
     // I suggest you add at least those two rules:
     "prettier/prettier": "error",
     "@typescript-eslint/no-unused-vars": "error",
+	"@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-explicit-any": "error",
     "import/prefer-default-export": "off",
     "import/no-default-export": "off",
